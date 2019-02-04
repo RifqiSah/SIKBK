@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_tambah_ketua"
+    tools:context=".TambahKetuaActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pastikan data yang Anda masukkan benar. Data dibawah merupakan data dari ketua komunitas."
+                android:paddingBottom="40dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="255"
+                    app:counterTextAppearance="@style/TextLabelBlack"
+                    app:counterOverflowTextAppearance="@style/TextLimitError" >
+
+                    <EditText
+                        android:id="@+id/txtKetuaNama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/realname"
+                        android:inputType="textCapWords"
+                        android:maxLines="1"
+                        android:textColor="@color/black" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
+                    app:counterTextAppearance="@style/TextLabelBlack"
+                    app:counterOverflowTextAppearance="@style/TextLimitError" >
+
+                    <EditText
+                        android:id="@+id/txtKetuaEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/email"
+                        android:inputType="textEmailAddress"
+                        android:maxLines="1"
+                        android:textColor="@color/black" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="15"
+                    app:counterTextAppearance="@style/TextLabelBlack"
+                    app:counterOverflowTextAppearance="@style/TextLimitError" >
+
+                    <EditText
+                        android:id="@+id/txtKetuaUsername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/username"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textColor="@color/black" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"  >
+
+                    <EditText
+                        android:id="@+id/txtKetuaPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/password"
+                        android:inputType="textPassword"
+                        android:maxLines="1"
+                        android:textColor="@color/black" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack" >
+
+                    <EditText
+                        android:id="@+id/txtKetuaNomor"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Nomor HP"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:textColor="@color/black" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Jenis Kelamin"
+                    android:textSize="12sp"
+                    android:paddingBottom="7dp"/>
+
+                <Spinner
+                    android:id="@+id/spinJenisKelamin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="250"
+                    app:counterTextAppearance="@style/TextLabelBlack"
+                    app:counterOverflowTextAppearance="@style/TextLimitError" >
+
+                    <EditText
+                        android:id="@+id/txtKetuaAlamat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Alamat"
+                        android:inputType="textCapWords|textMultiLine"
+                        android:maxLines="3"
+                        android:textColor="@color/black" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack">
+
+                    <EditText
+                        android:id="@+id/txtKetuaTanggalLahir"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Tanggal Lahir"
+                        android:focusable="false"
+                        android:textColor="@color/black"
+                        android:drawableEnd="@drawable/ic_date_range_gray_24dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

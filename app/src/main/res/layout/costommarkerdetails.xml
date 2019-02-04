@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:text="Judul"
+        android:textColor="@color/colorPrimary"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@android:drawable/ic_menu_myplaces"/>
+
+        <TextView
+            android:id="@+id/tv_pemilik"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:layout_marginLeft="5dp"
+            android:text="Pemilik" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@android:drawable/ic_menu_today" />
+
+        <TextView
+            android:id="@+id/tv_operasional"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:layout_marginLeft="5dp"
+            android:text="07:00 - 15:00"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@android:drawable/ic_menu_info_details" />
+
+        <TextView
+            android:id="@+id/tv_website"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:layout_marginLeft="5dp"
+            android:text="http://"
+            android:textColor="#00ccff"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@android:drawable/ic_menu_call" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:layout_marginLeft="5dp"
+            android:text="+08xxx"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@android:drawable/ic_menu_directions" />
+
+        <TextView
+            android:id="@+id/tv_jarak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="false"
+            android:layout_marginLeft="5dp"
+            android:text="2KM"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.alriftech.sikbk">
+
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.MAPS_RECEIVE" />
+
+    <permission
+        android:name="android.permission.CAMERA"
+        android:protectionLevel="signature" />
+    <permission
+        android:name="android.permission.ACCESS_COARSE_LOCATION"
+        android:protectionLevel="signature" />
+    <permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:protectionLevel="signature" />
+    <permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:protectionLevel="signature" />
+    <permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:protectionLevel="signature" />
+    <permission
+        android:name="andorid.permission.MAPS_RECEIVE"
+        android:protectionLevel="signature" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Sikbk">
+        <activity android:name=".LihatDokumenActivity"></activity>
+
+        <service
+            android:name=".LocationService"
+            android:enabled="true" />
+        <service
+            android:name=".InternetService"
+            android:enabled="true" />
+
+        <uses-library android:name="com.google.android.maps" />
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyAY1H3285BgEWGnzY5OnL7SLkt7KHF0b8c" /> <!-- Activity -->
+        <activity
+            android:name=".SplashActivity"
+            android:theme="@style/Sikbk.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:theme="@style/Sikbk.NoActionBar" />
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/Sikbk.NoActionBar" />
+        <activity
+            android:name=".DashboardActivity"
+            android:label="Beranda" />
+        <activity
+            android:name=".DetailLowonganActivity"
+            android:label="Detail Pekerjaan"
+            android:theme="@style/Sikbk.WhiteActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+        <activity
+            android:name=".DaftarLowonganActivity"
+            android:label="Lamar Pekerjaan">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DetailLowonganActivity" />
+        </activity>
+        <activity
+            android:name=".UserProfileActivity"
+            android:label="@string/act_user_details"
+            android:theme="@style/Sikbk.WhiteActionBar"
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+        <activity
+            android:name=".TambahKantorActivity"
+            android:label="Tambah Kantor">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+        <activity
+            android:name=".MapActivity"
+            android:label="Pilih Lokasi">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TambahKantorActivity" />
+        </activity>
+        <activity
+            android:name=".TambahLowonganActivity"
+            android:label="Tambah Lowongan">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+        <activity
+            android:name=".TambahKetuaActivity"
+            android:label="Tambah Ketua">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+        <activity
+            android:name=".DetailLowonganKantorActivity"
+            android:label="Pelamar Lowongan">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+        <activity
+            android:name=".DetailPelamarActivity"
+            android:label="Detail Pelamar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DetailLowonganKantorActivity" />
+        </activity>
+        <activity
+            android:name=".DetailUsersActivity"
+            android:label="Informasi User"
+            android:theme="@style/Sikbk.WhiteActionBar"
+            android:windowSoftInputMode="stateHidden">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DashboardActivity" />
+        </activity>
+    </application>
+
+</manifest>

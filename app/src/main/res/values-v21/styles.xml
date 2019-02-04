@@ -1,0 +1,29 @@
+<resources>
+    <style name="TextLabel" parent="Theme.AppCompat">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">#FFF</item>
+        <item name="android:textColor">#FFF</item>
+        <item name="android:textSize">15sp</item>
+
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">#FFF</item>
+        <item name="colorControlNormal">#FFF</item>
+        <item name="colorControlActivated">#FFF</item>
+    </style>
+
+    <style name="TextLabelBlack" parent="Theme.AppCompat">
+        <!-- Hint color and label color in FALSE state -->
+        <item name="android:textColorHint">@color/black_overlay</item>
+        <item name="android:textColor">@color/black_overlay</item>
+        <item name="android:textSize">15sp</item>
+
+        <!-- Label color in TRUE state and bar color FALSE and TRUE State -->
+        <item name="colorAccent">@color/black_overlay</item>
+        <item name="colorControlNormal">@color/black_overlay</item>
+        <item name="colorControlActivated">@color/black_overlay</item>
+    </style>
+
+    <style name="TextLimitError" parent="TextAppearance.AppCompat.Small">
+    <item name="android:textColor">#F00</item>
+    </style>
+</resources>

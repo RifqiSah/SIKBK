@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="4dp"
+    app:cardElevation="4dp">
+
+    <ImageView
+        android:id="@+id/row_lay_disable_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray"
+        android:alpha="0.7"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/row_lay_disable_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:layout_gravity="center"
+        android:text="Tidak Tersedia"
+        android:textSize="20sp"
+        android:textColor="#bf3f3f"
+        android:rotation="-20"
+        android:visibility="invisible"/>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/txt_list_bidang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="1dp"
+                android:layout_marginRight="5dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/list_1"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_list_kategori"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="1dp"
+                android:layout_weight="3"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textSize="10sp"
+                android:background="@drawable/kategori_layout_default"
+                android:textColor="@color/white" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/txt_list_deskripsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="1dp"
+            android:paddingTop="5dp"
+            android:text="@string/dummy"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/list_2" />
+
+        <TextView
+            android:id="@+id/txt_list_kantor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="1dp"
+            android:text="@string/dummy"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/list_2"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="13dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_access_time_dark_24dp" />
+
+                <TextView
+                    android:id="@+id/txt_list_waktu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dummy"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_person_dark_24dp" />
+
+                <TextView
+                    android:id="@+id/txt_list_jumlah"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dummy"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="left"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:src="@drawable/ic_gps_fixed_dark_24dp" />
+
+                <TextView
+                    android:id="@+id/txt_list_jarak"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dummy"
+                    android:layout_marginLeft="5dp"
+                    android:textColor="@color/gray"
+                    android:textSize="10sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</android.support.v7.widget.CardView>

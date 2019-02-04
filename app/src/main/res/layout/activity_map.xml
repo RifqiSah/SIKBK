@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MapActivity">
+
+    <fragment
+        android:id="@+id/map_fragment"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/details"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:visibility="visible">
+
+        <View
+            android:id="@+id/bgDetails"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginBottom="55dp"
+            android:layout_alignBottom="@+id/btnPilihLokasi"
+            android:background="@drawable/shape"/>
+
+        <Button
+            android:id="@+id/btnPilihLokasi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@color/background"
+            android:textColor="@color/foreground"
+            android:onClick="pilihLokasi"
+            android:text="Pilih Lokasi" />
+
+        <TextView
+            android:id="@+id/tvd_judul"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@+id/bgDetails"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/background"
+            android:text="Koordinat" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            android:layout_alignTop="@+id/tvd_judul" >
+
+            <LinearLayout
+                android:id="@+id/satu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_gps_fixed_dark_24dp"/>
+
+                <TextView
+                    android:id="@+id/tvd_lat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:singleLine="false"
+                    android:text="0.0" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/dua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/ic_gps_fixed_dark_24dp"/>
+
+                <TextView
+                    android:id="@+id/tvd_long"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:singleLine="false"
+                    android:text="0.0" />
+            </LinearLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

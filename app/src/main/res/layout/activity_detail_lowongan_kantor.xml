@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailLowonganKantorActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:id="@+id/lay_lam_nama"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:text="Nama Lowongan"
+                    android:textColor="@color/list_1"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_pelam_bidang"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dummy"
+                    android:textColor="@color/list_2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lay_lam_des"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lay_lam_nama"
+                android:layout_marginTop="20dp"
+                android:gravity="left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:text="Deskripsi Singkat"
+                    android:textColor="@color/list_1"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txt_pelam_deskripsi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dummy"
+                    android:textColor="@color/list_2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/lay_lam_des"
+                android:layout_marginTop="20dp"
+                android:gravity="left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="5dp"
+                    android:text="Pelamar Pekerjaan"
+                    android:textColor="@color/list_1"
+                    android:textStyle="bold" />
+
+                <ListView
+                    android:id="@+id/lst_pelamar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@android:color/transparent" />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

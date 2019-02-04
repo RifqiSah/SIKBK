@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout_root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:padding="20dp" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tambah Kategori"
+        android:textSize="15sp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp">
+
+        <EditText
+            android:id="@+id/dialog_kategori_nama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:layout_marginBottom="20dp"
+            android:hint="Nama Kategori"
+            android:inputType="textCapWords"
+            android:background="@android:color/transparent">
+            <requestFocus />
+        </EditText>
+        <EditText
+            android:id="@+id/dialog_kategori_warna"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:hint="Warna"
+            android:inputType="textCapWords"
+            android:background="@android:color/transparent">
+        </EditText>
+    </LinearLayout>
+</LinearLayout>

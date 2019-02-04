@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">SIKBK</string>
+    <string name="app_name_long">Sistem Informasi Kerja Berbasis Komunitas</string>
+    <!--<string name="API_URL">http://10.0.2.2/alriftech/index.php/api/apps/sikbk/</string>-->
+    <string name="API_URL">https://www.alriftech.com/api/v2/apps/sikbk/</string>
+    <string name="API_KEY">13385495e7d9582a48d27c501605643d9854f562</string>
+    <string name="ASSETS_URL">https://www.alriftech.com/static/sikbk/files/</string>
+    <string name="DOC_URL">https://www.alriftech.com/static/sikbk/files/documents/</string>
+
+    <!-- Main-->
+    <string name="dummy">-</string>
+    <string name="username">Username</string>
+    <string name="password">Kata Sandi</string>
+    <string name="email">Email</string>
+    <string name="realname">Nama Lengkap</string>
+    <string name="address">Alamat</string>
+    <string name="birth">Tanggal Lahir</string>
+    <string name="signin">Masuk</string>
+    <string name="signout">Keluar</string>
+    <string name="signup">Daftar</string>
+    <string name="profil">Profil</string>
+    <string name="lamar">Lamar Pekerjaan Ini</string>
+    <string name="data_diri">Data Diri</string>
+    <string name="riwayat_pendidikan">Riwayat Pendidikan</string>
+    <string name="riwayat_pekerjaan">Riwayat Pekerjaan</string>
+
+    <!--Lainnya-->
+    <string name="no_data">Tidak ada data</string>
+    <string name="no_lowongan">Tidak ada lowongan</string>
+    <string name="no_account">Tidak punya akun? Daftar disini</string>
+    <string name="have_account">Sudah punya akun? Masuk disini</string>
+    <string name="btn_simpan">Simpan Perubahan</string>
+    <string name="btn_edit_profil">Edit Profil</string>
+    <string name="btn_tambah_pendidikan">Tambah Pendidikan</string>
+    <string name="btn_edit_pendidikan">Edit Pendidikan</string>
+    <string name="btn_edit_pekerjaan">Edit Pekerjaan</string>
+    <string name="s_bantuan_upload">* tekan gambar untuk mengunggah dokumen</string>
+    <string name="bulletpoint">\u2022</string>
+
+    <!--Snackbar & Toast-->
+    <string name="st_data_lengkap">Selamat! Anda berhasil melamar pekerjaan ini!</string>
+    <string name="st_data_tidak_lengkap">Data yang Anda masukkan belum lengkap!</string>
+
+    <!--Activity-->
+    <string name="act_register">Daftar Akun</string>
+    <string name="act_login">Masuk Akun</string>
+    <string name="act_dashboard">Beranda</string>
+    <string name="act_kantor">Kantor</string>
+    <string name="act_lowongan">Lowongan</string>
+    <string name="act_lowongan_saya">Lowongan Saya</string>
+    <string name="act_user_details">Profil Anda</string>
+    <string name="act_user_details_edit">Edit Profil Anda</string>
+    <string name="act_kategori">Kategori</string>
+    <string name="act_daftar_anggota">Anggota</string>
+    <string name="act_daftar_anggota_user">Akun Anggota</string>
+    <string name="act_daftar_ketua">Ketua</string>
+
+    <!--Dialog Box-->
+    <string name="btn_ok">Oke</string>
+    <string name="btn_yes">Ya</string>
+    <string name="btn_no">Tidak</string>
+    <string name="btn_cancel">Batal</string>
+    <string name="t_konfirmasi">Konfirmasi</string>
+    <string name="t_informasi">Informasi</string>
+    <string name="b_konfirmasi_lamaran">Apakah Anda yakin ingin melamar pekerjaan ini?</string>
+    <string name="b_konfirmasi_lamaran_kirim">Pastikan data yang Anda masukkan sudah benar dan dapat dipertanggungjawabkan.\n\nIngin melanjutkan?</string>
+    <string name="b_konfirmasi_registrasi">Pastikan data yang Anda isikan sudah benar.\n\nApakah ingin melanjutkan?</string>
+    <string name="b_konfirmasi_keluar">Yakin ingin keluar dari aplikasi?</string>
+    <string name="b_konfirmasi_permission">Aplikasi ini membutuhkan beberapa ijin dari sistem agar dapat bekerja.\n\nApakah ingin melanjutkan?</string>
+    <string name="b_no_connection">Tidak dapat terhubung ke server.\n\nMohon periksa koneksi Internet Anda saat ini.</string>
+    <string name="b_infomap">Tekan lama pada map untuk menambahkan tanda (marker).\n\nTekan lama pada marker untuk memindahkan marker dan memperoleh lokasi.</string>
+    <string name="b_yakin_terima">Apakah Anda yakin ingin menerima pelamar ini?</string>
+    <string name="b_yakin_tolak">Apakah Anda yakin ingin menolak pelamar ini?</string>
+
+    <!--Navigation Drawer-->
+    <string name="openDrawer">Drawer dibuka</string>
+    <string name="closeDrawer">Drawer ditutup</string>
+    <string name="nav_kategori_1">Dasar</string>
+    <string name="nav_view_item_1">Beranda</string>
+    <string name="nav_view_item_2">Kantor</string>
+    <string name="nav_view_item_3">Lowongan</string>
+    <string name="nav_view_item_4">Lowongan Saya</string>
+    <string name="nav_view_item_5">Kategori</string>
+    <string name="nav_view_item_6">Anggota</string>
+    <string name="nav_view_item_7">Akun Anggota</string>
+    <string name="nav_view_item_8">Akun Ketua</string>
+    <string name="nav_kategori_2">Lainnya</string>
+    <string name="nav_view_item_11">Profil</string>
+    <string name="nav_view_item_12">Keluar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

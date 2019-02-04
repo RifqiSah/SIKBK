@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_tambah_lowongan"
+    tools:context=".TambahLowonganActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pastikan data yang Anda masukkan benar. Data dibawah merupakan data dari lowongan yang akan Anda buka."
+                android:paddingBottom="40dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
+                    app:counterTextAppearance="@style/TextLabelBlack"
+                    app:counterOverflowTextAppearance="@style/TextLimitError" >
+
+                    <EditText
+                        android:id="@+id/txtLowonganBidang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Lowongan (Contoh: Programmer Android)"
+                        android:inputType="textCapWords"
+                        android:maxLines="1"
+                        android:textColor="@color/black" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="250"
+                    app:counterTextAppearance="@style/TextLabelBlack"
+                    app:counterOverflowTextAppearance="@style/TextLimitError" >
+
+                    <EditText
+                        android:id="@+id/txtLowonganDeskripsi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Deskripsi Lowongan"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLines="3"
+                        android:textColor="@color/black" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/txtLowonganSampai"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Tanggal"
+                        android:focusable="false"
+                        android:textColor="@color/black"
+                        android:drawableEnd="@drawable/ic_date_range_gray_24dp" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/txtLowonganSampaiWaktu"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Waktu"
+                        android:focusable="false"
+                        android:textColor="@color/black"
+                        android:drawableEnd="@drawable/ic_access_time_gray_24dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Kantor"
+                    android:textSize="12sp"
+                    android:paddingBottom="7dp"/>
+
+                <Spinner
+                    android:id="@+id/spinLowonganKantor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Kategori"
+                    android:textSize="12sp"
+                    android:paddingRight="7dp"
+                    android:layout_weight="1"/>
+
+                <Spinner
+                    android:id="@+id/spinLowonganKategori"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Jumlah Pelamar"
+                    android:textSize="12sp"
+                    android:paddingRight="10dp"
+                    android:layout_weight="1" />
+
+                <Spinner
+                    android:id="@+id/spinLowonganJumlah"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Persyaratan"
+                    android:textSize="12sp"
+                    android:paddingBottom="7dp"/>
+
+                <CheckBox
+                    android:id="@+id/chkSyarat1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ijazah" />
+
+                <CheckBox
+                    android:id="@+id/chkSyarat2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Transkrip Nilai" />
+
+                <CheckBox
+                    android:id="@+id/chkSyarat3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Surat Keterangan Baik" />
+
+                <CheckBox
+                    android:id="@+id/chkSyarat4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Surat Keterangan Sehat" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="250"
+                    app:counterTextAppearance="@style/TextLabelBlack"
+                    app:counterOverflowTextAppearance="@style/TextLimitError" >
+
+                    <EditText
+                        android:id="@+id/txtLowonganJobdesk"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Jobdesk"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLines="3"
+                        android:textColor="@color/black" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="250"
+                    app:counterTextAppearance="@style/TextLabelBlack"
+                    app:counterOverflowTextAppearance="@style/TextLimitError" >
+
+                    <EditText
+                        android:id="@+id/txtLowonganSkill"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Keahlian"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLines="3"
+                        android:textColor="@color/black" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="250"
+                    app:counterTextAppearance="@style/TextLabelBlack"
+                    app:counterOverflowTextAppearance="@style/TextLimitError" >
+
+                    <EditText
+                        android:id="@+id/txtLowonganKnowledge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Pengetahuan"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLines="3"
+                        android:textColor="@color/black" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="250"
+                    app:counterTextAppearance="@style/TextLabelBlack"
+                    app:counterOverflowTextAppearance="@style/TextLimitError" >
+
+                    <EditText
+                        android:id="@+id/txtLowonganPersonality"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Keperibadian"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:maxLines="3"
+                        android:textColor="@color/black" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="250"
+                    app:counterTextAppearance="@style/TextLabelBlack"
+                    app:counterOverflowTextAppearance="@style/TextLimitError" >
+
+                    <EditText
+                        android:id="@+id/txtLowonganSalary"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Gaji"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:textColor="@color/black" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

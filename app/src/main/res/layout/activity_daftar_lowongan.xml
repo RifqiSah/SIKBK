@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layout_daftar_lowongan"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DaftarLowonganActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/lay_lam_nama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:paddingBottom="5dp"
+                android:text="Nama Lowongan"
+                android:textColor="@color/list_1"/>
+
+            <TextView
+                android:id="@+id/txt_lam_bidang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dummy"
+                android:textColor="@color/list_2" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lay_lam_des"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lay_lam_nama"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:paddingBottom="5dp"
+                android:text="Deskripsi Singkat"
+                android:textColor="@color/list_1"/>
+
+            <TextView
+                android:id="@+id/txt_lam_deskripsi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dummy"
+                android:textColor="@color/list_2" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lay_lam_doc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lay_lam_des"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:paddingBottom="5dp"
+                android:text="Persyaratan Yang Dibutuhkan"
+                android:textColor="@color/list_1"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/lay_syarat_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="doc1" >
+
+                    <ImageView
+                        android:id="@+id/img_lam_syarat_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_insert_drive_file_gray_24dp" />
+
+                    <TextView
+                        android:id="@+id/txt_lam_syarat_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray"
+                        android:text="Ijazah"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/lay_syarat_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="doc2" >
+
+                    <ImageView
+                        android:id="@+id/img_lam_syarat_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_insert_drive_file_gray_24dp" />
+
+                    <TextView
+                        android:id="@+id/txt_lam_syarat_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray"
+                        android:text="Transkrip"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/lay_syarat_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="doc3" >
+
+                    <ImageView
+                        android:id="@+id/img_lam_syarat_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_insert_drive_file_gray_24dp" />
+
+                    <TextView
+                        android:id="@+id/txt_lam_syarat_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray"
+                        android:text="SK. Baik"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/lay_syarat_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="doc4" >
+
+                    <ImageView
+                        android:id="@+id/img_lam_syarat_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_insert_drive_file_gray_24dp" />
+
+                    <TextView
+                        android:id="@+id/txt_lam_syarat_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray"
+                        android:text="SK. Sehat"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="italic"
+                android:textColor="@color/gray"
+                android:text="@string/s_bantuan_upload"/>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lay_lam_pesan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lay_lam_doc"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:paddingBottom="5dp"
+                android:text="Pesan Anda (opsional)"
+                android:textColor="@color/list_1"/>
+
+            <EditText
+                android:id="@+id/txt_lam_pesan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_lamar"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="15dp"
+                android:padding="12dp"
+                android:onClick="daftarLowongan"
+                android:text="@string/lamar"
+                android:textColor="@color/white"
+                android:background="@color/colorAccent"/>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>

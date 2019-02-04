@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#488bb5</color>
+    <color name="colorPrimaryDark">#3075a1</color>
+    <color name="colorAccent">#3075a1</color>
+    <color name="background">#488bb5</color>
+    <color name="foreground">@android:color/white</color>
+    <color name="textColor">#d6d6d6</color>
+    <color name="new_background">#e5e5e5</color>
+
+    <color name="white">@android:color/white</color>
+    <color name="black">@android:color/black</color>
+    <color name="gray">@android:color/darker_gray</color>
+
+    <color name="black_overlay">#66000000</color>
+
+    <color name="list_1">#5c5c5c</color>
+    <color name="list_2">#a6a6a6</color>
+
+    <color name="btn_terima">#4CAF50</color>
+    <color name="btn_tolak">#bf3f3f</color>
+</resources>

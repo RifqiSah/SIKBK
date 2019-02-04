@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/layout_detail_pelamar"
+    tools:context=".DetailPelamarActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:id="@+id/lay_lamar_nama"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:text="Nama Lowongan"
+                android:textColor="@color/list_1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_pelamlih_bidang"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dummy"
+                android:textColor="@color/list_2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_lamar_des"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lay_lamar_nama"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:text="Nama Pelamar"
+                android:textColor="@color/list_1"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txt_pelamlih_nama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/dummy"
+                    android:textColor="@color/list_2"
+                    android:layout_weight="9"/>
+
+                <ImageView
+                    android:id="@+id/img_pelamlih_lihatuser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClick="lihatUser"
+                    android:src="@drawable/ic_remove_red_eye_accent_24dp"
+                    android:layout_weight="1"
+                    android:visibility="invisible"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lay_lamar_doc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lay_lamar_des"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:paddingBottom="5dp"
+                android:text="Dokumen Pelamar"
+                android:textColor="@color/list_1"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/lay_syarat_doc_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="docUser1" >
+
+                    <ImageView
+                        android:id="@+id/img_lamar_syarat_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_insert_drive_file_gray_24dp" />
+
+                    <TextView
+                        android:id="@+id/txt_lamar_syarat_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray"
+                        android:text="Ijazah"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/lay_syarat_doc_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="docUser2">
+
+                    <ImageView
+                        android:id="@+id/img_lamar_syarat_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_insert_drive_file_gray_24dp" />
+
+                    <TextView
+                        android:id="@+id/txt_lamar_syarat_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray"
+                        android:text="Transkrip"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/lay_syarat_doc_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="docUser3" >
+
+                    <ImageView
+                        android:id="@+id/img_lamar_syarat_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_insert_drive_file_gray_24dp" />
+
+                    <TextView
+                        android:id="@+id/txt_lamar_syarat_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray"
+                        android:text="SK. Baik"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:id="@+id/lay_syarat_doc_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_weight="1"
+                    android:clickable="true"
+                    android:onClick="docUser4" >
+
+                    <ImageView
+                        android:id="@+id/img_lamar_syarat_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_weight="1"
+                        android:src="@drawable/ic_insert_drive_file_gray_24dp" />
+
+                    <TextView
+                        android:id="@+id/txt_lamar_syarat_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="center"
+                        android:textColor="@color/gray"
+                        android:text="SK. Sehat"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lay_lamar_pesan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lay_lamar_doc"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="5dp"
+                android:text="Pesan"
+                android:textColor="@color/list_1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txt_pelamlih_pesan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dummy"
+                android:textColor="@color/list_2" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/lay_lamar_balasan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/lay_lamar_pesan"
+            android:layout_marginTop="20dp"
+            android:gravity="left"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:paddingBottom="5dp"
+                android:text="Balasan"
+                android:textColor="@color/list_1"/>
+
+            <EditText
+                android:id="@+id/txt_pelamlih_balasan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:textSize="15sp" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@id/lay_lamar_balasan">
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_terima"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:padding="12dp"
+                android:text="Terima"
+                android:onClick="pelamar_terima"
+                android:textColor="@color/white"
+                android:background="@color/btn_terima"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_tolak"
+                android:layout_weight="1"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:padding="12dp"
+                android:text="Tolak"
+                android:onClick="pelamar_tolak"
+                android:textColor="@color/white"
+                android:background="@color/btn_tolak"/>
+        </LinearLayout>
+    </RelativeLayout>
+</RelativeLayout>
