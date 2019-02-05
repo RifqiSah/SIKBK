@@ -215,6 +215,15 @@ public class DashboardActivity extends AppCompatActivity {
         new getUserData().execute(String.valueOf(id));
     }
 
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        super.onCreateOptionsMenu(menu);
+//
+//        getMenuInflater().inflate(R.menu.mnurefresh, menu);
+//
+//        return true;
+//    }
+
     private void setMenu(int level) {
         Menu nav_Menu = navView.getMenu();
         init_user = false;
