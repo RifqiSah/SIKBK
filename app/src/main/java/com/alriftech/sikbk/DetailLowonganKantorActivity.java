@@ -54,6 +54,7 @@ public class DetailLowonganKantorActivity extends AppCompatActivity {
                 i.putExtra("id_lowongan", id_lowongan);
                 i.putExtra("id_pelamar", item.get("id_pelamar").toString());
                 i.putExtra("nama", item.get("nama").toString());
+                i.putExtra("id_user", item.get("id_user").toString());
 
                 startActivity(i);
             }
@@ -90,13 +91,14 @@ public class DetailLowonganKantorActivity extends AppCompatActivity {
                     hashMap.put("nama", c.getString("realname"));
                     hashMap.put("pesan", c.getString("pesan"));
                     hashMap.put("pada", c.getString("dibuat_pada"));
+                    hashMap.put("id_user", c.getString("id_user"));
 
                     mylist.add(hashMap);
                 }
 
-                    SimpleAdapter sa = new SimpleAdapter(DetailLowonganKantorActivity.this, mylist, R.layout.lst_row_pelamar,
-                            new String[] {"nama", "pesan", "pada"}, new int[] {R.id.row_pelamar_nama, R.id.row_pelamar_pesan, R.id.row_pelamar_dibuat_pada});
-                    lstPelamar.setAdapter(sa);
+                SimpleAdapter sa = new SimpleAdapter(DetailLowonganKantorActivity.this, mylist, R.layout.lst_row_pelamar,
+                        new String[] {"nama", "pesan", "pada", "id_user"}, new int[] {R.id.row_pelamar_nama, R.id.row_pelamar_pesan, R.id.row_pelamar_dibuat_pada, R.id.row_pelamar_id_user});
+                lstPelamar.setAdapter(sa);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

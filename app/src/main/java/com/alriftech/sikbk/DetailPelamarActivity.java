@@ -48,7 +48,7 @@ import java.util.HashMap;
 public class DetailPelamarActivity extends AppCompatActivity {
     Core core;
     SharedPreferences sp;
-    String id_pelamar;
+    String id_pelamar, id_user;
     TextView txtBidang, txtPelamar, txtPesan, txtBalasan;
     AppCompatButton btnTerima, btnTolak;
 
@@ -87,6 +87,7 @@ public class DetailPelamarActivity extends AppCompatActivity {
         txtPelamar.setText(i.getString("nama"));
 
         id_pelamar = i.getString("id_pelamar");
+        id_user = i.getString("id_user");
 
         new getPelamarDetailsData().execute(id_pelamar);
     }
@@ -150,8 +151,8 @@ public class DetailPelamarActivity extends AppCompatActivity {
     }
 
     public void lihatUser(View v) {
-        Snackbar.make(findViewById(R.id.layout_detail_pelamar), "Dalam Perbaikan", Snackbar.LENGTH_LONG).show();
-        new DownloadFile().execute("https://www.alriftech.com/static/sikbk/files/documents/u-6-3-ijazah.pdf");
+//        Snackbar.make(findViewById(R.id.layout_detail_pelamar), "Dalam Perbaikan", Snackbar.LENGTH_LONG).show();
+        startActivity(new Intent(this, DetailPelamarUserActivity.class));
     }
 
     private void lihatPdf(String path) {
