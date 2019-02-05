@@ -16,4 +16,4 @@ Aplikasi ini dapat bekerja pada:
 Aplikasi ini dapat didownload pada [Google PlayStore](https://play.google.com/store/apps/details?id=com.alriftech.sikbk "Google PlayStore").
 
 ## Kontribusi
-Jika Anda ingin berkontribusi dengan project ini dan merupakan salah satu dari anggota komunitas, silahkan kontak saya pada [rifqisah@alriftech.com](mailto:rifqisah@alriftech.com).
+Jika Anda ingin berkontribusi dengan project ini dan **merupakan salah satu dari anggota komunitas**, silahkan kontak saya pada [rifqisah@alriftech.com](mailto:rifqisah@alriftech.com).
