@@ -87,7 +87,7 @@
                         android:src="@drawable/ic_person_dark_24dp"
                         android:layout_marginRight="20dp"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/txt_users_detail_username"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -95,9 +95,6 @@
                         android:textSize="15sp"
                         android:background="@android:color/transparent"
                         android:textColor="@color/gray"
-                        android:enabled="false"
-                        android:inputType="text"
-                        android:maxLines="1"
                         android:text="@string/dummy" />
                 </LinearLayout>
                 <LinearLayout
@@ -116,7 +113,7 @@
                         android:src="@drawable/ic_email_gray_24dp"
                         android:layout_marginRight="20dp"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/txt_users_detail_email"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -124,9 +121,6 @@
                         android:textSize="15sp"
                         android:background="@android:color/transparent"
                         android:textColor="@color/gray"
-                        android:enabled="false"
-                        android:inputType="textEmailAddress"
-                        android:maxLines="1"
                         android:text="@string/dummy" />
                 </LinearLayout>
                 <LinearLayout
@@ -145,7 +139,7 @@
                         android:src="@drawable/ic_call_gray_24dp"
                         android:layout_marginRight="20dp"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/txt_users_detail_phone"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -153,9 +147,6 @@
                         android:textSize="15sp"
                         android:background="@android:color/transparent"
                         android:textColor="@color/gray"
-                        android:enabled="false"
-                        android:inputType="phone"
-                        android:maxLines="2"
                         android:text="@string/dummy" />
                 </LinearLayout>
                 <LinearLayout
@@ -174,7 +165,7 @@
                         android:src="@drawable/ic_info_gray_24dp"
                         android:layout_marginRight="20dp"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/txt_users_detail_realname"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -182,9 +173,6 @@
                         android:textSize="15sp"
                         android:background="@android:color/transparent"
                         android:textColor="@color/gray"
-                        android:enabled="false"
-                        android:inputType="textMultiLine|textCapWords"
-                        android:maxLines="2"
                         android:text="@string/dummy" />
                 </LinearLayout>
                 <LinearLayout
@@ -203,7 +191,7 @@
                         android:src="@drawable/ic_date_range_gray_24dp"
                         android:layout_marginRight="20dp"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/txt_users_detail_birth_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -232,15 +220,12 @@
                         android:src="@drawable/ic_place_gray_24dp"
                         android:layout_marginRight="20dp"/>
 
-                    <EditText
+                    <TextView
                         android:id="@+id/txt_users_detail_address"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1.5"
                         android:background="@android:color/transparent"
-                        android:enabled="false"
-                        android:inputType="textMultiLine|textCapWords"
-                        android:maxLines="3"
                         android:text="@string/dummy"
                         android:textColor="@color/gray"
                         android:textSize="15sp" />
@@ -261,7 +246,6 @@
                     android:layout_height="wrap_content"
                     android:text="@string/riwayat_pendidikan"
                     android:textStyle="bold"/>
-
 
                 <ListView
                     android:id="@+id/lst_pendidikans"

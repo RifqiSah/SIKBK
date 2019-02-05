@@ -108,6 +108,10 @@ public class TambahKetuaActivity extends AppCompatActivity {
                 tambahKetua();
                 return true;
 
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

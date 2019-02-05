@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -75,6 +76,17 @@ public class DetailLowonganActivity extends AppCompatActivity {
 
         dialog = ProgressDialog.show(this, "", "Mengambil data", true);
         new getLowonganData().execute(Integer.toString(id_lowongan));
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return(super.onOptionsItemSelected(item));
     }
 
     private String getPersyaratan(int _1, int _2, int _3, int _4) {

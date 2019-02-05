@@ -7,6 +7,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
@@ -82,6 +83,17 @@ public class DetailUsersActivity extends AppCompatActivity {
         new getUserPekerjaan().execute(id_user);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return(super.onOptionsItemSelected(item));
+    }
+
     private class getUserPendidikan extends AsyncTask<String,String,String> {
 
         JSONObject jobj = null;
@@ -98,8 +110,6 @@ public class DetailUsersActivity extends AppCompatActivity {
 
         protected void onPostExecute(String json){
             try {
-                dialog.dismiss();
-
                 JSONObject jobj = new JSONObject(json);
                 JSONArray jdata = jobj.getJSONArray("data");
 

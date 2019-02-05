@@ -158,6 +158,10 @@ public class TambahKantorActivity extends AppCompatActivity {
                 tambahKantor();
                 return true;
 
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
         }

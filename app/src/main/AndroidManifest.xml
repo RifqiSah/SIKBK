@@ -143,10 +143,17 @@
                 android:value=".DetailLowonganKantorActivity" />
         </activity>
         <activity
+            android:name=".DetailPelamarUserActivity"
+            android:label="Detail Pelamar"
+            android:theme="@style/Sikbk.WhiteActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".DetailPelamarActivity" />
+        </activity>
+        <activity
             android:name=".DetailUsersActivity"
             android:label="Informasi User"
-            android:theme="@style/Sikbk.WhiteActionBar"
-            android:windowSoftInputMode="stateHidden">
+            android:theme="@style/Sikbk.WhiteActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".DashboardActivity" />

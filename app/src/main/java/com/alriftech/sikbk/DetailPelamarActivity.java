@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ImageView;
@@ -84,12 +85,50 @@ public class DetailPelamarActivity extends AppCompatActivity {
         btnTolak    = findViewById(R.id.btn_tolak);
 
         txtBidang.setText(sp.getString("low_bidang", ""));
-        txtPelamar.setText(i.getString("nama"));
 
-        id_pelamar = i.getString("id_pelamar");
-        id_user = i.getString("id_user");
+        if (savedInstanceState != null) {
+            txtPelamar.setText(savedInstanceState.getString("nama"));
+
+            id_pelamar = savedInstanceState.getString("id_pelamar");
+            id_user = savedInstanceState.getString("id_user");
+        }
+        else {
+            txtPelamar.setText(i.getString("nama"));
+
+            id_pelamar = i.getString("id_pelamar");
+            id_user = i.getString("id_user");
+        }
 
         new getPelamarDetailsData().execute(id_pelamar);
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        txtPelamar.setText(savedInstanceState.getString("nama"));
+        id_pelamar = savedInstanceState.getString("id_pelamar");
+        id_user = savedInstanceState.getString("id_user");
+    }
+
+    // invoked when the activity may be temporarily destroyed, save the instance state here
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putString("nama", txtPelamar.getText().toString());
+        outState.putString("id_pelamar", id_pelamar);
+        outState.putString("id_user", id_user);
+
+        // call superclass to save any view hierarchy
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+
+        return(super.onOptionsItemSelected(item));
     }
 
     private void setDokumen(int id, String nilai) {
@@ -151,8 +190,9 @@ public class DetailPelamarActivity extends AppCompatActivity {
     }
 
     public void lihatUser(View v) {
-//        Snackbar.make(findViewById(R.id.layout_detail_pelamar), "Dalam Perbaikan", Snackbar.LENGTH_LONG).show();
-        startActivity(new Intent(this, DetailPelamarUserActivity.class));
+        Intent i = new Intent(DetailPelamarActivity.this, DetailPelamarUserActivity.class);
+        i.putExtra("id_user", id_user);
+        startActivity(i);
     }
 
     private void lihatPdf(String path) {
