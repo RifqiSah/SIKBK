@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.MatrixCursor;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.provider.BaseColumns;
 import android.support.annotation.ColorInt;
 import android.support.design.widget.NavigationView;
@@ -72,6 +73,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     private boolean notif;
     private boolean init_user = true;
+    private boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -198,9 +200,24 @@ public class DashboardActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (rLay.isDrawerOpen(GravityCompat.START)) {
             rLay.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
+            return;
         }
+
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, R.string.b_exitapp, Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce = false;
+            }
+        }, 2000);
     }
 
     @Override

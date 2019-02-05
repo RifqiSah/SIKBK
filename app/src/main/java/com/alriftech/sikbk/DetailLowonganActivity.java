@@ -114,7 +114,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
         }
 
         if (_1 != 1)
-            ret = ret.substring(3);
+            ret = ret.substring(2);
 
         ret += " dibutuhkan.";
         return ret;

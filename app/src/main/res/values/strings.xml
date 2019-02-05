@@ -72,6 +72,7 @@
     <string name="b_yakin_terima">Apakah Anda yakin ingin menerima pelamar ini?</string>
     <string name="b_yakin_tolak">Apakah Anda yakin ingin menolak pelamar ini?</string>
     <string name="b_infokantorkosong">Anda hanya dapat membuka lowongan ketika mempunyai minimal sebuah kantor.</string>
+    <string name="b_exitapp">Tekan tombol kembali lagi untuk keluar aplikasi.</string>
 
     <!--Navigation Drawer-->
     <string name="openDrawer">Drawer dibuka</string>
