@@ -1,6 +1,7 @@
 package com.alriftech.sikbk;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -10,6 +11,7 @@ import android.graphics.Paint;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
 import android.text.Layout;
@@ -28,9 +30,28 @@ import java.util.Date;
 public class Core {
 
     private static Context ctx;
+    private static String CHANNEL_ID = "SIKBK_NOTIFICATION_CHANNEL";
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.channel_name);
+            String description = getString(R.string.channel_description);
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID, name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = ctx.getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
 
     public Core(Context ctx) {
         this.ctx = ctx;
+        createNotificationChannel();
     }
 
     public static String getString(int code) {
@@ -236,7 +257,7 @@ public class Core {
 
         PendingIntent pIntent = PendingIntent.getActivity(ctx, requestID, intent, flags);
 
-        Notification noti = new NotificationCompat.Builder(ctx)
+        Notification noti = new NotificationCompat.Builder(ctx, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(sTitle)
                 .setContentText(sContent)
@@ -264,7 +285,7 @@ public class Core {
         int flags = PendingIntent.FLAG_CANCEL_CURRENT;
 
         PendingIntent pIntent = PendingIntent.getActivity(ctx, requestID, intent, flags);
-        Notification noti = new NotificationCompat.Builder(ctx)
+        Notification noti = new NotificationCompat.Builder(ctx, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(sTitle)
                 .setContentText(sContent)

@@ -7,6 +7,9 @@
     <string name="ASSETS_URL">https://www.alriftech.com/static/sikbk/files/</string>
     <string name="DOC_URL">https://www.alriftech.com/static/sikbk/files/documents/</string>
 
+    <string name="channel_name">SIKBK Notification</string>
+    <string name="channel_description">SIKBK Notification Channel</string>
+
     <!-- Main-->
     <string name="dummy">-</string>
     <string name="username">Username</string>
