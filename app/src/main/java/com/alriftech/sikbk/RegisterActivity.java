@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.RelativeLayout;
@@ -137,7 +138,7 @@ public class RegisterActivity extends AppCompatActivity {
                 bufferedWriter.flush();
 
                 int statusCode = httpURLConnection.getResponseCode();
-                // if (statusCode == 200 || statusCode == 400) {
+                 if (statusCode == 200) {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
                     StringBuilder sb = new StringBuilder();
                     String line;
@@ -147,7 +148,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     text = sb.toString();
                     bufferedWriter.close();
-                // }
+                 }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -164,6 +165,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String result) {
+            Log.d("SikbkLog", result);
+
             try {
                 JSONObject obj = new JSONObject(result);
 
