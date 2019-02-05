@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -53,7 +54,16 @@ public class RegisterActivity extends AppCompatActivity {
         finish();
     }
 
+    private void hideKeyboard() {
+        if (getCurrentFocus() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
     public void cekRegister(View v) {
+        hideKeyboard();
+
         sName = txtUname.getText().toString();
         sPass = txtPass.getText().toString();
         sEmail = txtEmail.getText().toString();
@@ -127,7 +137,7 @@ public class RegisterActivity extends AppCompatActivity {
                 bufferedWriter.flush();
 
                 int statusCode = httpURLConnection.getResponseCode();
-                if (statusCode == 200) {
+                // if (statusCode == 200 || statusCode == 400) {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
                     StringBuilder sb = new StringBuilder();
                     String line;
@@ -137,7 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                     text = sb.toString();
                     bufferedWriter.close();
-                }
+                // }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

@@ -1,9 +1,11 @@
 package com.alriftech.sikbk;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.support.design.widget.Snackbar;
@@ -84,6 +86,20 @@ public class TambahLowonganActivity extends AppCompatActivity {
         txtKnowledge            = findViewById(R.id.txtLowonganKnowledge);
         txtPersonality          = findViewById(R.id.txtLowonganPersonality);
         txtSalary               = findViewById(R.id.txtLowonganSalary);
+
+        // Proteksi
+        if (kantor_list.size() <= 0) {
+            new AlertDialog.Builder(TambahLowonganActivity.this, R.style.Sikbk_Dialog)
+                    .setTitle(R.string.t_informasi)
+                    .setMessage(R.string.b_infokantorkosong)
+                    .setNeutralButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            finish();
+                        }
+                    }).show();
+        }
 
         txtLowonganSampai.setOnTouchListener(new View.OnTouchListener() {
             @Override

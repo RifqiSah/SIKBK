@@ -240,7 +240,11 @@ public class UserProfileActivity extends AppCompatActivity {
                                         WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN
                                 );
 
-                                new sendPendidikanData().execute(id_user,
+                                if (userInput.getText().toString().isEmpty())
+                                    Snackbar.make(findViewById(R.id.layout_user_profile), "Terjadi kesalahan. Data tidak boleh kosong", Snackbar.LENGTH_LONG).show();
+
+                                else
+                                    new sendPendidikanData().execute(id_user,
                                         dropJenis.getSelectedItem().toString(),
                                         userInput.getText().toString(),
                                         dropTahun.getSelectedItem().toString());

@@ -71,6 +71,7 @@
     <string name="b_infomap">Tekan lama pada map untuk menambahkan tanda (marker).\n\nTekan lama pada marker untuk memindahkan marker dan memperoleh lokasi.</string>
     <string name="b_yakin_terima">Apakah Anda yakin ingin menerima pelamar ini?</string>
     <string name="b_yakin_tolak">Apakah Anda yakin ingin menolak pelamar ini?</string>
+    <string name="b_infokantorkosong">Anda hanya dapat membuka lowongan ketika mempunyai minimal sebuah kantor.</string>
 
     <!--Navigation Drawer-->
     <string name="openDrawer">Drawer dibuka</string>
