@@ -2,14 +2,41 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
+
+    def versionPropsFile = file('version.properties')
+    def versionBuild
+
+    /* Setting default value for versionBuild which is the last incremented value stored in the file */
+    if (versionPropsFile.canRead()) {
+        def Properties versionProps = new Properties()
+        versionProps.load(new FileInputStream(versionPropsFile))
+        versionBuild = versionProps['VERSION_BUILD'].toInteger()
+    } else {
+        throw new FileNotFoundException("Could not read version.properties!")
+    }
+
+    /* Wrapping inside a method avoids auto incrementing on every gradle task run. Now it runs only when we build apk */
+    ext.autoIncrementBuildNumber = {
+        if (versionPropsFile.canRead()) {
+            def Properties versionProps = new Properties()
+            versionProps.load(new FileInputStream(versionPropsFile))
+            versionBuild = versionProps['VERSION_BUILD'].toInteger() + 1
+            versionProps['VERSION_BUILD'] = versionBuild.toString()
+            versionProps.store(versionPropsFile.newWriter(), null)
+        } else {
+            throw new FileNotFoundException("Could not read version.properties!")
+        }
+    }
+
     defaultConfig {
         applicationId "com.alriftech.sikbk"
         minSdkVersion 23
         targetSdkVersion 26
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.8." + versionBuild
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -18,6 +45,28 @@ android {
     }
 
     useLibrary 'org.apache.http.legacy'
+
+    // Hook to check if the release/debug task is among the tasks to be executed.
+    // Let's make use of it
+    gradle.taskGraph.whenReady {taskGraph ->
+        if (taskGraph.hasTask(assembleDebug)) {  /* when run debug task */
+            autoIncrementBuildNumber()
+        } else if (taskGraph.hasTask(assembleRelease)) { /* when run release task */
+            autoIncrementBuildNumber()
+        }
+    }
+
+    // If you use each() to iterate through the variant objects,
+    // you need to start using all(). That's because each() iterates
+    // through only the objects that already exist during configuration time—
+    // but those object don't exist at configuration time with the new model.
+    // However, all() adapts to the new model by picking up object as they are
+    // added during execution.
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "SIKBK-${variant.name}-${variant.versionName}.apk"
+        }
+    }
 }
 
 dependencies {

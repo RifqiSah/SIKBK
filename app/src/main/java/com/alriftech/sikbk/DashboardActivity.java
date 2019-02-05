@@ -71,6 +71,7 @@ public class DashboardActivity extends AppCompatActivity {
     private ActionBarDrawerToggle dt;
 
     private boolean notif;
+    private boolean init_user = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -148,7 +149,7 @@ public class DashboardActivity extends AppCompatActivity {
                                     public void onClick(DialogInterface dialog, int button) {
                                         sp.edit().clear().commit();
 
-                                        Toast.makeText(DashboardActivity.this, "Anda berhasil keluar dari sesi", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(DashboardActivity.this, "Anda berhasil keluar dari sesi.", Toast.LENGTH_SHORT).show();
                                         startActivity(new Intent(DashboardActivity.this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
                                         finish();
                                     }
@@ -214,8 +215,9 @@ public class DashboardActivity extends AppCompatActivity {
         new getUserData().execute(String.valueOf(id));
     }
 
-    private String getLevel(int level) {
+    private void setMenu(int level) {
         Menu nav_Menu = navView.getMenu();
+        init_user = false;
 
         switch (level) {
             case 1:
@@ -231,8 +233,6 @@ public class DashboardActivity extends AppCompatActivity {
                     displaySelectedFragment(new KategoriFragment());
                 }
 
-                return "Administrator";
-
             case 2:
                 nav_Menu.findItem(R.id.mnu_nav_beranda).setVisible(false);
                 nav_Menu.findItem(R.id.mnu_nav_kantor).setVisible(false);
@@ -246,8 +246,6 @@ public class DashboardActivity extends AppCompatActivity {
                     displaySelectedFragment(new AnggotaFragment());
                 }
 
-                return "Ketua Komunitas";
-
             case 3:
                 nav_Menu.findItem(R.id.mnu_nav_kategori).setVisible(false);
                 nav_Menu.findItem(R.id.mnu_nav_anggota).setVisible(false);
@@ -259,19 +257,29 @@ public class DashboardActivity extends AppCompatActivity {
                     displaySelectedFragment(new DashboardFragment());
                 }
 
-                return "Anggota";
-
             case 99:
                 if (!notif) {
                     navView.setCheckedItem(R.id.mnu_nav_beranda);
                     displaySelectedFragment(new DashboardFragment());
                 }
-
-                return "Developer";
-
-            default:
-                return "Tidak Diketahui";
         }
+
+    }
+
+    private String getLevel(int level) {
+        if (init_user) {
+            setMenu(level);
+
+            switch (level) {
+                case 1: return "Administrator";
+                case 2: return "Ketua Komunitas";
+                case 3:  return "Anggota";
+                case 99: return "Developer";
+                default: return "Tidak Diketahui";
+            }
+        }
+
+        return "Tidak Diketahui";
     }
 
     public void tambahKantor(View v) {
@@ -384,6 +392,8 @@ public class DashboardActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+            init_user = false;
         }
     }
 

@@ -46,7 +46,6 @@ public class DashboardFragment extends Fragment {
 
     private LinearLayoutManager mLlm;
     private int pos;
-    private int maxPage = 2;
     private int curPage = 1;
     private double curLat, curLong;
 
