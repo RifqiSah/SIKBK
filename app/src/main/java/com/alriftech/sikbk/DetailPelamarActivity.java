@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
+import android.os.Handler;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -195,7 +196,7 @@ public class DetailPelamarActivity extends AppCompatActivity {
         startActivity(i);
     }
 
-    private void lihatPdf(String path) {
+    private void lihatPdf(final String path) {
         File file = new File(path);
         MimeTypeMap map = MimeTypeMap.getSingleton();
         String ext = MimeTypeMap.getFileExtensionFromUrl(file.getName());
@@ -210,7 +211,13 @@ public class DetailPelamarActivity extends AppCompatActivity {
         intent.setDataAndType(data, type);
         startActivity(intent);
 
-//        new File(path).getAbsoluteFile().delete();
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                new File(path).getAbsoluteFile().delete();
+            }
+        }, 5000L);
     }
 
     private class DownloadFile extends AsyncTask<String, String, String> {
