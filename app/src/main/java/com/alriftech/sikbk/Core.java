@@ -14,6 +14,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.text.Layout;
 import android.text.SpannableString;
 import android.text.TextUtils;
@@ -259,15 +260,18 @@ public class Core {
 
         Notification noti = new NotificationCompat.Builder(ctx, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
+                .setColor(ContextCompat.getColor(ctx, R.color.white))
                 .setContentTitle(sTitle)
                 .setContentText(sContent)
                 .setContentIntent(pIntent)
                 .setAutoCancel(true)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(sContent))
                 .build();
 
         NotificationManager mNotificationManager = (NotificationManager) ctx.getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(0, noti);
+        mNotificationManager.notify(1, noti);
     }
 
     public static void showNotification(String sTitle, String sContent, boolean version) {
@@ -287,9 +291,12 @@ public class Core {
         PendingIntent pIntent = PendingIntent.getActivity(ctx, requestID, intent, flags);
         Notification noti = new NotificationCompat.Builder(ctx, CHANNEL_ID)
                 .setSmallIcon(R.mipmap.ic_launcher)
+                .setColor(ContextCompat.getColor(ctx, R.color.white))
                 .setContentTitle(sTitle)
                 .setContentText(sContent)
                 .setContentIntent(pIntent)
+                .setDefaults(NotificationCompat.DEFAULT_ALL)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setStyle(new NotificationCompat.BigTextStyle().bigText(sContent))
                 .setAutoCancel(true)
                 .build();
