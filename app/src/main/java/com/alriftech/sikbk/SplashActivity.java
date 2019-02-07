@@ -92,20 +92,20 @@ public class SplashActivity extends AppCompatActivity {
 
     private void setPermission() {
         ActivityCompat.requestPermissions(this, new String[]{
-                Manifest.permission.CAMERA,
-                Manifest.permission.ACCESS_COARSE_LOCATION,
-                Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.READ_EXTERNAL_STORAGE,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                android.Manifest.permission.CAMERA,
+                android.Manifest.permission.ACCESS_COARSE_LOCATION,
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                android.Manifest.permission.READ_EXTERNAL_STORAGE,
+                android.Manifest.permission.WRITE_EXTERNAL_STORAGE
                 }, 101);
     }
 
     private void cekPermission() {
-        if (!isHavePermission(Manifest.permission.CAMERA) ||
-                !isHavePermission(Manifest.permission.ACCESS_COARSE_LOCATION) ||
-                !isHavePermission(Manifest.permission.ACCESS_FINE_LOCATION) ||
-                !isHavePermission(Manifest.permission.READ_EXTERNAL_STORAGE) ||
-                !isHavePermission(Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+        if (!isHavePermission(android.Manifest.permission.CAMERA) ||
+                !isHavePermission(android.Manifest.permission.ACCESS_COARSE_LOCATION) ||
+                !isHavePermission(android.Manifest.permission.ACCESS_FINE_LOCATION) ||
+                !isHavePermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) ||
+                !isHavePermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
             new AlertDialog.Builder(SplashActivity.this, R.style.Sikbk_Dialog)
                     .setTitle(R.string.t_konfirmasi)

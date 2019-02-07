@@ -265,7 +265,7 @@ public class DaftarLowonganActivity extends AppCompatActivity {
                             Log.d("SikbkLog", "Document 3: " + doc_3);
                             Log.d("SikbkLog", "Document 4: " + doc_4);
 
-                             new sendLowonganData().execute(id_user, id_lowongan, txtPesan.getText().toString(), doc_1, doc_2, doc_3, doc_4);
+                            new sendLowonganData().execute(id_user, id_lowongan, txtPesan.getText().toString(), doc_1, doc_2, doc_3, doc_4);
                         }
                     })
                     .setNegativeButton(R.string.btn_no, null).show();
@@ -285,7 +285,7 @@ public class DaftarLowonganActivity extends AppCompatActivity {
             String doc1         = params[3];
             String doc2         = params[4];
             String doc3         = params[5];
-            String doc4         = params[4];
+            String doc4         = params[6];
 
             try {
                 URL url = new URL(reg_url);
