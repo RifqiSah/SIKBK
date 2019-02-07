@@ -107,6 +107,9 @@ public class LoginActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+
+            stopService(new Intent(LoginActivity.this, InternetService.class));
+            startService(new Intent(LoginActivity.this, InternetService.class));
         }
     }
 }
