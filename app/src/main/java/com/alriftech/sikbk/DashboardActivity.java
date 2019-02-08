@@ -259,6 +259,8 @@ public class DashboardActivity extends AppCompatActivity {
                     displaySelectedFragment(new KategoriFragment());
                 }
 
+                break;
+
             case 2:
                 nav_Menu.findItem(R.id.mnu_nav_beranda).setVisible(false);
                 nav_Menu.findItem(R.id.mnu_nav_kantor).setVisible(false);
@@ -272,6 +274,8 @@ public class DashboardActivity extends AppCompatActivity {
                     displaySelectedFragment(new AnggotaFragment());
                 }
 
+                break;
+
             case 3:
                 nav_Menu.findItem(R.id.mnu_nav_kategori).setVisible(false);
                 nav_Menu.findItem(R.id.mnu_nav_anggota).setVisible(false);
@@ -283,11 +287,15 @@ public class DashboardActivity extends AppCompatActivity {
                     displaySelectedFragment(new DashboardFragment());
                 }
 
+                break;
+
             case 99:
                 if (!notif) {
                     navView.setCheckedItem(R.id.mnu_nav_beranda);
                     displaySelectedFragment(new DashboardFragment());
                 }
+
+                break;
         }
 
     }
