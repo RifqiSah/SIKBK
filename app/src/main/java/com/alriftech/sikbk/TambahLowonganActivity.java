@@ -87,20 +87,6 @@ public class TambahLowonganActivity extends AppCompatActivity {
         txtPersonality          = findViewById(R.id.txtLowonganPersonality);
         txtSalary               = findViewById(R.id.txtLowonganSalary);
 
-        // Proteksi
-        if (kantor_list.size() <= 0) {
-            new AlertDialog.Builder(TambahLowonganActivity.this, R.style.Sikbk_Dialog)
-                    .setTitle(R.string.t_informasi)
-                    .setMessage(R.string.b_infokantorkosong)
-                    .setNeutralButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                            finish();
-                        }
-                    }).show();
-        }
-
         txtLowonganSampai.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -328,6 +314,22 @@ public class TambahLowonganActivity extends AppCompatActivity {
             ArrayAdapter<String> adapKantor = new ArrayAdapter<>(TambahLowonganActivity.this, android.R.layout.simple_spinner_item, kantor_list);
             adapKantor.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinKantor.setAdapter(adapKantor);
+
+            // Proteksi
+            if (kantor_list.size() <= 0) {
+                hideKeyboard();
+
+                new AlertDialog.Builder(TambahLowonganActivity.this, R.style.Sikbk_Dialog)
+                        .setTitle(R.string.t_informasi)
+                        .setMessage(R.string.b_infokantorkosong)
+                        .setNeutralButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                finish();
+                            }
+                        }).show();
+            }
         }
 
         @Override
