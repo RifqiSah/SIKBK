@@ -251,31 +251,35 @@
             android:orientation="horizontal"
             android:layout_below="@id/lay_lamar_balasan">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_weight="2"
+                android:layout_height="0dp" />
+
             <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_terima"
-                android:layout_weight="1"
+                android:id="@+id/btn_tolak"
+                android:layout_weight="3"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginTop="15dp"
+                android:padding="12dp"
+                android:text="Tolak"
+                android:onClick="pelamar_tolak"
+                android:textColor="@color/btn_tolak"
+                android:background="@android:color/transparent"/>
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btn_terima"
+                android:layout_weight="3"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
                 android:padding="12dp"
                 android:text="Terima"
                 android:onClick="pelamar_terima"
                 android:textColor="@color/white"
                 android:background="@color/btn_terima"/>
-
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/btn_tolak"
-                android:layout_weight="1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginLeft="10dp"
-                android:padding="12dp"
-                android:text="Tolak"
-                android:onClick="pelamar_tolak"
-                android:textColor="@color/white"
-                android:background="@color/btn_tolak"/>
         </LinearLayout>
     </RelativeLayout>
 </RelativeLayout>
