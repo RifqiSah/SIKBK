@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Handler;
@@ -401,7 +402,8 @@ public class UserProfileActivity extends AppCompatActivity {
                     txtAddress.setText(c.getString("alamat"));
 
                     if (c.isNull("g_id") == true) {
-                        txtGoogle.setText("Ketuk untuk menghubungkan");
+                        txtGoogle.setText("Hubungkan akun Google Anda");
+                        txtGoogle.setTextColor(Color.BLACK);
                         txtGoogle.setEnabled(true);
                     }
                     else {
@@ -413,8 +415,10 @@ public class UserProfileActivity extends AppCompatActivity {
 
                     String url;
 
-                    if (usingGoogle && !c.getString("g_profile").equals(""))
+                    if (usingGoogle && !c.getString("g_profile").equals("")) {
                         url = c.getString("g_profile");
+                        findViewById(R.id.img_user_google_watermark).setVisibility(View.VISIBLE);
+                    }
                     else
                         url = getString(R.string.ASSETS_URL) + "profiles/" + c.getString("profile_image");
 

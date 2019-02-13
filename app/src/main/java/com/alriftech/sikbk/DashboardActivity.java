@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.MatrixCursor;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.provider.BaseColumns;
@@ -443,7 +444,13 @@ public class DashboardActivity extends AppCompatActivity {
                 for (int i = 0; i < jdata.length(); i++) {
                     JSONObject c = jdata.getJSONObject(i);
 
-                    String url = getString(R.string.ASSETS_URL) + "profiles/" + c.getString("profile_image");
+                    String url;
+
+                    if (c.isNull("g_id") == false && !c.getString("g_profile").equals(""))
+                        url = c.getString("g_profile");
+                    else
+                        url = getString(R.string.ASSETS_URL) + "profiles/" + c.getString("profile_image");
+
                     Picasso.with(DashboardActivity.this).invalidate(url);
                     Picasso.with(DashboardActivity.this).load(url).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(img_nav_user);
                     img_nav_user.setScaleType(ImageView.ScaleType.CENTER_CROP);
