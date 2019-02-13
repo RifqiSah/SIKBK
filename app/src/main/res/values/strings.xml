@@ -80,6 +80,7 @@
     <string name="b_yakin_tolak">Apakah Anda yakin ingin menolak pelamar ini?</string>
     <string name="b_infokantorkosong">Anda hanya dapat membuka lowongan ketika mempunyai minimal sebuah kantor.</string>
     <string name="b_exitapp">Tekan tombol kembali lagi untuk keluar aplikasi.</string>
+    <string name="b_link_google_account">Apakah Anda ingin menghubungkan akun %s?</string>
 
     <!--Navigation Drawer-->
     <string name="openDrawer">Drawer dibuka</string>

@@ -189,13 +189,28 @@ public class UserProfileActivity extends AppCompatActivity {
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
-    private void updateUI(@Nullable GoogleSignInAccount account) {
+    private void updateUI(@Nullable final GoogleSignInAccount account) {
         if (account != null) {
-            dialog = ProgressDialog.show(this, "", "Menghubungkan akun Google", true);
+            new android.app.AlertDialog.Builder(UserProfileActivity.this, R.style.Sikbk_Dialog)
+                    .setTitle(R.string.t_informasi)
+                    .setMessage(getString(R.string.b_link_google_account, account.getEmail()))
+                    .setPositiveButton(R.string.btn_yes, new DialogInterface.OnClickListener(){
+                        @Override
+                        public void onClick(DialogInterface dialogs, int button) {
+                            dialog = ProgressDialog.show(UserProfileActivity.this, "", "Menghubungkan akun Google", true);
 
-            String g_photoUrl = "";
-            if (account.getPhotoUrl() != null) g_photoUrl = account.getPhotoUrl().toString();
-            new sendUserGoogleAccountData().execute(id_user, account.getId(), account.getEmail(), g_photoUrl);
+                            String g_photoUrl = "";
+                            if (account.getPhotoUrl() != null) g_photoUrl = account.getPhotoUrl().toString();
+                            new sendUserGoogleAccountData().execute(id_user, account.getId(), account.getEmail(), g_photoUrl);
+                        }
+                    })
+                    .setNegativeButton(R.string.btn_no, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            mGoogleSignInClient.signOut();
+                        }
+                    }).show();
+
         }
     }
 
