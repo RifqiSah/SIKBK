@@ -117,6 +117,27 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/TextLabelBlack"
+                    android:layout_weight="1">
+
+                    <EditText
+                        android:id="@+id/txtLowonganJumlah"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Jumlah Pelamar"
+                        android:inputType="numberSigned"
+                        android:textColor="@color/black"
+                        android:drawableEnd="@drawable/ic_person_dark_24dp" />
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp"
                 android:orientation="vertical">
 
@@ -135,40 +156,21 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Kategori"
                     android:textSize="12sp"
-                    android:paddingRight="7dp"
-                    android:layout_weight="1"/>
+                    android:paddingBottom="7dp"/>
 
                 <Spinner
                     android:id="@+id/spinLowonganKategori"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Jumlah Pelamar"
-                    android:textSize="12sp"
-                    android:paddingRight="10dp"
-                    android:layout_weight="1" />
-
-                <Spinner
-                    android:id="@+id/spinLowonganJumlah"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"

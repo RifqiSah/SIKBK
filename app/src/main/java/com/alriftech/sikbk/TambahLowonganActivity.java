@@ -49,10 +49,10 @@ public class TambahLowonganActivity extends AppCompatActivity {
     String id_user;
     ProgressDialog dialog;
 
-    EditText txtLowonganBidang, txtLowonganDeskripsi, txtLowonganSampai, txtLowonganSampaiWaktu, txtJobdesk, txtSkill, txtKnowledge, txtPersonality, txtSalary;
-    Spinner spinKategori, spinKantor, spinJumlah;
+    EditText txtLowonganBidang, txtLowonganDeskripsi, txtLowonganSampai, txtLowonganSampaiWaktu, txtJumlah, txtJobdesk, txtSkill, txtKnowledge, txtPersonality, txtSalary;
+    Spinner spinKategori, spinKantor;
     CheckBox chkS1, chkS2, chkS3, chkS4;
-    ArrayList<String> kategori_list, kantor_list, jumlah_list;
+    ArrayList<String> kategori_list, kantor_list;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -65,16 +65,16 @@ public class TambahLowonganActivity extends AppCompatActivity {
         id_user = String.valueOf(sp.getInt("id_user", 0));
 
         new getKategoriData().execute();
-        new getKantorData().execute(id_user);
+        new getKantorData().execute();
 
         txtLowonganBidang       = findViewById(R.id.txtLowonganBidang);
         txtLowonganDeskripsi    = findViewById(R.id.txtLowonganDeskripsi);
         txtLowonganSampai       = findViewById(R.id.txtLowonganSampai);
         txtLowonganSampaiWaktu  = findViewById(R.id.txtLowonganSampaiWaktu);
+        txtJumlah               = findViewById(R.id.txtLowonganJumlah);
 
         spinKantor              = findViewById(R.id.spinLowonganKantor);
         spinKategori            = findViewById(R.id.spinLowonganKategori);
-        spinJumlah              = findViewById(R.id.spinLowonganJumlah);
 
         chkS1                   = findViewById(R.id.chkSyarat1);
         chkS2                   = findViewById(R.id.chkSyarat2);
@@ -139,15 +139,6 @@ public class TambahLowonganActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-        jumlah_list = new ArrayList<>();
-
-        for (int i = 1; i <= 10; i++)
-            jumlah_list.add(String.valueOf(i) + " orang");
-
-        ArrayAdapter<String> adapJumlah = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, jumlah_list);
-        adapJumlah.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinJumlah.setAdapter(adapJumlah);
     }
 
     private void hideKeyboard() {
@@ -231,7 +222,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
                 txtLowonganSampai.getText().toString() + " " + txtLowonganSampaiWaktu.getText().toString(),
                 txtLowonganBidang.getText().toString(),
                 String.valueOf(spinKategori.getSelectedItemPosition() + 1),
-                String.valueOf(spinJumlah.getSelectedItemPosition() + 1),
+                txtJumlah.getText().toString(),
                 String.valueOf((chkS1.isChecked() ? 1 : 0)),
                 String.valueOf((chkS2.isChecked() ? 1 : 0)),
                 String.valueOf((chkS3.isChecked() ? 1 : 0)),
@@ -291,7 +282,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             JSONParser jsonparser = new JSONParser();
 
-            String url = core.API("user_kantor/" + params[0]);
+            String url = core.API("kantor");
             jobj = jsonparser.makeHttpRequest(url);
 
             return jobj.toString();

@@ -353,8 +353,8 @@ public class DetailPelamarActivity extends AppCompatActivity {
                     setDokumen(4, c.getString("skkb"));
 
                     if (c.getInt("status") != 3) {
-                        btnTerima.setEnabled(false); btnTerima.setBackgroundColor(getColor(R.color.gray));
-                        btnTolak.setEnabled(false); btnTolak.setBackgroundColor(getColor(R.color.gray));
+                        btnTerima.setEnabled(false); btnTerima.setTextColor(getColor(R.color.gray));
+                        btnTolak.setEnabled(false); btnTolak.setTextColor(getColor(R.color.gray));
 
                         txtBalasan.setText(c.getString("balasan"));
                         txtBalasan.setEnabled(false);
