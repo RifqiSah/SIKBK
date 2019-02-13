@@ -214,6 +214,13 @@ public class UserProfileActivity extends AppCompatActivity {
         }
     }
 
+    private void recreateActivity() {
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(getIntent());
+        overridePendingTransition(0, 0);
+    }
+
     private void hideKeyboard() {
         if (getCurrentFocus() != null) {
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
@@ -518,7 +525,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        recreate();
+                        recreateActivity();
                     }
                 }, 2000L);
             } catch (JSONException e) {
@@ -597,7 +604,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        recreate();
+                        recreateActivity();
                     }
                 }, 2000L);
 
@@ -678,7 +685,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        recreate();
+                        recreateActivity();
                     }
                 }, 2000L);
 

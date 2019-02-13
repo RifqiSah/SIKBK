@@ -65,6 +65,12 @@ public class DashboardFragment extends Fragment {
         getActivity().registerReceiver(ReceivefromService, filter);
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+
+        getActivity().unregisterReceiver(ReceivefromService);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -72,7 +72,7 @@
     <string name="b_konfirmasi_lamaran">Apakah Anda yakin ingin melamar pekerjaan ini?</string>
     <string name="b_konfirmasi_lamaran_kirim">Pastikan data yang Anda masukkan sudah benar dan dapat dipertanggungjawabkan.\n\nIngin melanjutkan?</string>
     <string name="b_konfirmasi_registrasi">Pastikan data yang Anda isikan sudah benar.\n\nApakah ingin melanjutkan?</string>
-    <string name="b_konfirmasi_keluar">Yakin ingin keluar dari aplikasi?</string>
+    <string name="b_konfirmasi_keluar">Yakin ingin keluar dari sesi?</string>
     <string name="b_konfirmasi_permission">Aplikasi ini membutuhkan beberapa ijin dari sistem agar dapat bekerja.\n\nApakah ingin melanjutkan?</string>
     <string name="b_no_connection">Tidak dapat terhubung ke server.\n\nMohon periksa koneksi Internet Anda saat ini.</string>
     <string name="b_infomap">Tekan lama pada map untuk menambahkan tanda (marker).\n\nTekan lama pada marker untuk memindahkan marker dan memperoleh lokasi.</string>

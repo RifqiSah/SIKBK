@@ -75,7 +75,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
         btnLamar        = findViewById(R.id.btn_des_lamar);
 
         dialog = ProgressDialog.show(this, "", "Mengambil data", true);
-        new getLowonganData().execute(Integer.toString(id_lowongan));
+        new getLowonganData().execute(Integer.toString(id_lowongan), String.valueOf(sp.getInt("id_user", 0)));
     }
 
     @Override
@@ -162,7 +162,7 @@ public class DetailLowonganActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
             JSONParser jsonparser = new JSONParser();
 
-            String url = core.API("lowongan_details/" + params[0]);
+            String url = core.API("lowongan_details/" + params[0] + "/" + params[1]);
             jobj = jsonparser.makeHttpRequest(url);
 
             return jobj.toString();
@@ -190,7 +190,12 @@ public class DetailLowonganActivity extends AppCompatActivity {
                     txtPersyaratan.setText(getPersyaratan(c.getInt("ijazah"), c.getInt("transkrip"), c.getInt("skck"), c.getInt("skkb")));
 
                     String waktu = core.sisaWaktu(c.getString("waktu"));
-                    if (waktu.equals("0")) {
+                    if (jobj.getInt("self") == 1) {
+                        txtWaktu.setText("Ini merupakan lowongan Anda");
+                        btnLamar.setAlpha(.5f);
+                        btnLamar.setClickable(false);
+                    }
+                    else if (waktu.equals("0")) {
                         txtWaktu.setText("Lowongan tidak tersedia!");
                         btnLamar.setAlpha(.5f);
                         btnLamar.setClickable(false);
@@ -200,7 +205,6 @@ public class DetailLowonganActivity extends AppCompatActivity {
                         btnLamar.setAlpha(1f);
                         btnLamar.setClickable(true);
                     }
-
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
