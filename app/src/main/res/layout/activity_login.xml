@@ -39,7 +39,7 @@
                     android:id="@+id/txtUsername"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/username"
+                    android:hint="@string/usernameornim"
                     android:inputType="text"/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
@@ -77,6 +77,25 @@
                 android:onClick="cekLogin"
                 android:text="@string/signin"
                 android:background="@color/colorAccent"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="atau"
+                android:textAlignment="center"
+                android:layout_marginBottom="15dp" />
+
+            <android.support.v7.widget.AppCompatButton
+                android:id="@+id/btnGoogleLogin"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:layout_marginBottom="15dp"
+                android:onClick="signIn"
+                android:text="@string/signinGoogle"
+                android:drawableLeft="@drawable/googleg_standard_color_18"
+                android:textColor="@color/black"
+                android:background="@color/white"/>
 
             <TextView
                 android:id="@+id/textView6"

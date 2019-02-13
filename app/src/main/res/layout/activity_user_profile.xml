@@ -276,7 +276,36 @@
                         android:textSize="15sp" />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/lay_user_google"
                     android:layout_below="@id/lay_user_alamat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="15dp"
+                    android:paddingBottom="15dp"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/googleg_disabled_color_18"
+                        android:padding="3dp"
+                        android:layout_marginRight="20dp"/>
+
+                    <TextView
+                        android:id="@+id/txt_user_detail_google_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:background="@android:color/transparent"
+                        android:enabled="false"
+                        android:text="@string/dummy"
+                        android:textColor="@color/gray"
+                        android:textSize="15sp" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_below="@id/lay_user_google"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"

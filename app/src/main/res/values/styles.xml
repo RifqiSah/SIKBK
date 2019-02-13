@@ -58,4 +58,10 @@
         <item name="tabBackground">?attr/selectableItemBackground</item>
         <item name="tabSelectedTextColor">@color/colorAccent</item>
     </style>
+
+    <!-- Dark Buttons -->
+    <style name="Sikbk.MyDarkButton" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="colorButtonNormal">#607D8B</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
 </resources>

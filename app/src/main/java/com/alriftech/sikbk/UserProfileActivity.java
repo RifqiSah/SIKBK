@@ -10,6 +10,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
@@ -17,6 +19,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,8 +33,15 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 import com.squareup.picasso.MemoryPolicy;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -69,6 +79,7 @@ public class UserProfileActivity extends AppCompatActivity {
 
     SharedPreferences sp;
     EditText txtRealname, txtUsername, txtEmail, txtPhone, txtPassword, txtBirthDate, txtAddress;
+    TextView txtGoogle;
     ListView lstPendidikan, lstPekerjaan;
     ImageView imgUser;
     Button btnEditSave;
@@ -76,6 +87,10 @@ public class UserProfileActivity extends AppCompatActivity {
     String id_user;
 
     private boolean isEdit = false;
+    private boolean usingGoogle = false;
+
+    private static final int RC_SIGN_IN = 9001;
+    private GoogleSignInClient mGoogleSignInClient;
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -106,6 +121,7 @@ public class UserProfileActivity extends AppCompatActivity {
         txtPassword     = findViewById(R.id.txt_user_detail_password);
         txtBirthDate    = findViewById(R.id.txt_user_detail_birth_date);
         txtAddress      = findViewById(R.id.txt_user_detail_address);
+        txtGoogle       = findViewById(R.id.txt_user_detail_google_email);
 
         lstPendidikan   = findViewById(R.id.lst_pendidikan);
         lstPekerjaan    = findViewById(R.id.lst_pekerjaan);
@@ -139,7 +155,47 @@ public class UserProfileActivity extends AppCompatActivity {
             }
         });
 
+        txtGoogle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!usingGoogle)
+                    linkGoogle();
+            }
+        });
+
         getUserDetail(id_user);
+
+        // [Google Signin]
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+    }
+
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            updateUI(account);
+        } catch (ApiException e) {
+            Log.w("SikbkLog", "signInResult:failed code=" + e.getStatusCode());
+            updateUI(null);
+        }
+    }
+
+    private void linkGoogle() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+    private void updateUI(@Nullable GoogleSignInAccount account) {
+        if (account != null) {
+            dialog = ProgressDialog.show(this, "", "Menghubungkan akun Google", true);
+
+            String g_photoUrl = "";
+            if (account.getPhotoUrl() != null) g_photoUrl = account.getPhotoUrl().toString();
+            new sendUserGoogleAccountData().execute(id_user, account.getId(), account.getEmail(), g_photoUrl);
+        }
     }
 
     private void hideKeyboard() {
@@ -271,7 +327,7 @@ public class UserProfileActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK) {
+        if (resultCode == RESULT_OK && requestCode != RC_SIGN_IN) {
             try {
                 final Uri imageUri = data.getData();
                 final InputStream imageStream = getContentResolver().openInputStream(imageUri);
@@ -296,6 +352,11 @@ public class UserProfileActivity extends AppCompatActivity {
                 Toast.makeText(this, "Terjadi kesalahan!", Toast.LENGTH_LONG).show();
             }
 
+        }
+
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
         }
     }
 
@@ -331,11 +392,6 @@ public class UserProfileActivity extends AppCompatActivity {
                 for (int i = 0; i < jdata.length(); i++) {
                     JSONObject c = jdata.getJSONObject(i);
 
-                    String url = getString(R.string.ASSETS_URL) + "profiles/" + c.getString("profile_image");
-                    Picasso.with(UserProfileActivity.this).invalidate(url);
-                    Picasso.with(UserProfileActivity.this).load(url).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imgUser);
-                    imgUser.setScaleType(ImageView.ScaleType.CENTER_CROP);
-
                     txtRealname.setText(c.getString("realname"));
                     txtUsername.setText(c.getString("username")); username = c.getString("username");
                     txtEmail.setText(c.getString("email"));
@@ -343,6 +399,28 @@ public class UserProfileActivity extends AppCompatActivity {
                     txtPassword.setText("password");
                     txtBirthDate.setText(c.getString("tanggal_lahir"));
                     txtAddress.setText(c.getString("alamat"));
+
+                    if (c.isNull("g_id") == true) {
+                        txtGoogle.setText("Ketuk untuk menghubungkan");
+                        txtGoogle.setEnabled(true);
+                    }
+                    else {
+                        usingGoogle = true;
+
+                        txtGoogle.setText("Terhubung: " + c.getString("g_email"));
+                        findViewById(R.id.img_user_browse).setVisibility(View.GONE);
+                    }
+
+                    String url;
+
+                    if (usingGoogle && !c.getString("g_profile").equals(""))
+                        url = c.getString("g_profile");
+                    else
+                        url = getString(R.string.ASSETS_URL) + "profiles/" + c.getString("profile_image");
+
+                    Picasso.with(UserProfileActivity.this).invalidate(url);
+                    Picasso.with(UserProfileActivity.this).load(url).networkPolicy(NetworkPolicy.NO_CACHE).memoryPolicy(MemoryPolicy.NO_CACHE).into(imgUser);
+                    imgUser.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -416,8 +494,14 @@ public class UserProfileActivity extends AppCompatActivity {
                 JSONObject obj = new JSONObject(result);
 
                 dialog.dismiss();
-                recreate();
                 Snackbar.make(findViewById(R.id.layout_user_profile), obj.getString("data"), Snackbar.LENGTH_LONG).show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recreate();
+                    }
+                }, 2000L);
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -491,12 +575,102 @@ public class UserProfileActivity extends AppCompatActivity {
                 JSONObject obj = new JSONObject(result);
                 Snackbar.make(findViewById(R.id.layout_user_profile), obj.getString("data"), Snackbar.LENGTH_LONG).show();
 
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recreate();
+                    }
+                }, 2000L);
+
                 if (obj.getString("status").equals("success")) {
 
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+    }
+
+    private class sendUserGoogleAccountData extends AsyncTask<String,Void,String> {
+        @Override
+        protected String doInBackground(String... params) {
+
+            String reg_url = core.API("user_link_google/" + params[0]);
+            String text = "";
+
+            String g_id       = params[1];
+            String g_email    = params[2];
+            String g_profile  = params[3];
+
+            try {
+                URL url = new URL(reg_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                OutputStream os = httpURLConnection.getOutputStream();
+
+                String data = URLEncoder.encode("g_id", "UTF-8") + "=" + URLEncoder.encode(g_id, "UTF-8") + "&" +
+                        URLEncoder.encode("g_email", "UTF-8") + "=" + URLEncoder.encode(g_email, "UTF-8") + "&" +
+                        URLEncoder.encode("g_profile", "UTF-8") + "=" + URLEncoder.encode(g_profile, "UTF-8");
+
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+
+                int statusCode = httpURLConnection.getResponseCode();
+                if (statusCode == 200) {
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+
+                    while ((line = reader.readLine()) != null)
+                        sb.append(line).append("\n");
+
+                    text = sb.toString();
+                    bufferedWriter.close();
+                }
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            return text;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            dialog.dismiss();
+
+            try {
+                JSONObject obj = new JSONObject(result);
+                Snackbar.make(findViewById(R.id.layout_user_profile), obj.getString("data"), Snackbar.LENGTH_LONG).show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        recreate();
+                    }
+                }, 2000L);
+
+                if (obj.getString("status").equals("success")) {
+
+                }
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            mGoogleSignInClient.signOut();
         }
 
         @Override

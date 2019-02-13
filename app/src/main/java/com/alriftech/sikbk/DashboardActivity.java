@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Handler;
 import android.provider.BaseColumns;
 import android.support.annotation.ColorInt;
+import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -34,6 +35,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.pes.androidmaterialcolorpickerdialog.ColorPicker;
 import com.pes.androidmaterialcolorpickerdialog.ColorPickerCallback;
 import com.squareup.picasso.MemoryPolicy;
@@ -74,6 +83,9 @@ public class DashboardActivity extends AppCompatActivity {
     private boolean notif;
     private boolean init_user = true;
     private boolean doubleBackToExitPressedOnce = false;
+
+    private static final int RC_SIGN_IN = 9001;
+    private GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -149,11 +161,7 @@ public class DashboardActivity extends AppCompatActivity {
                                 .setPositiveButton(R.string.btn_yes, new DialogInterface.OnClickListener(){
                                     @Override
                                     public void onClick(DialogInterface dialog, int button) {
-                                        sp.edit().clear().commit();
-
-                                        Toast.makeText(DashboardActivity.this, "Anda berhasil keluar dari sesi.", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(DashboardActivity.this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-                                        finish();
+                                        signOut();
                                     }
                                 })
                                 .setNegativeButton(R.string.btn_no, null).show();
@@ -166,6 +174,27 @@ public class DashboardActivity extends AppCompatActivity {
                 }
             }
         });
+
+        // [Google Signin]
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+    }
+
+    private void signOut() {
+        mGoogleSignInClient.signOut()
+                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        sp.edit().clear().commit();
+
+                        Toast.makeText(DashboardActivity.this, "Anda berhasil keluar dari sesi.", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(DashboardActivity.this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                        finish();
+                    }
+                });
     }
 
     @Override
