@@ -6,11 +6,17 @@ import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.provider.MediaStore;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -20,6 +26,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -30,7 +37,12 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -46,7 +58,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
 
     Core core;
     SharedPreferences sp;
-    String id_user;
+    String id_user, uploadedLogonganImg;
     ProgressDialog dialog;
 
     EditText txtLowonganBidang, txtLowonganDeskripsi, txtLowonganSampai, txtLowonganSampaiWaktu, txtJumlah, txtJobdesk, txtSkill, txtKnowledge, txtPersonality, txtSalary;
@@ -148,6 +160,55 @@ public class TambahLowonganActivity extends AppCompatActivity {
         }
     }
 
+    public void browseImageLowongan(View v) {
+        String imageUri = "";
+
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK);
+        galleryIntent.setType("image/*");
+
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+        cameraIntent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+
+        Intent chooser = Intent.createChooser(galleryIntent, "Complete action using");
+        chooser.putExtra(Intent.EXTRA_INITIAL_INTENTS, new Intent[] { cameraIntent });
+        startActivityForResult(chooser, 909);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK && requestCode == 909) {
+            try {
+                final Uri imageUri = data.getData();
+                final InputStream imageStream = getContentResolver().openInputStream(imageUri);
+                final Bitmap selectedImage = BitmapSupport.handleSamplingAndRotationBitmap(this, imageUri); //BitmapFactory.decodeStream(imageStream);
+                final String pathImgLowongan = FilePath.getPath(this, imageUri);
+
+                ImageView imgLowongan = findViewById(R.id.imgLowongan);
+                imgLowongan.setImageBitmap(selectedImage);
+                imgLowongan.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+                dialog = ProgressDialog.show(this,"","Mengupload foto ...",true);
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        uploadFile(pathImgLowongan);
+                    }
+                }).start();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Terjadi kesalahan!", Toast.LENGTH_LONG).show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(this, "Terjadi kesalahan!", Toast.LENGTH_LONG).show();
+            }
+
+        }
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.mnucheck, menu);
@@ -232,7 +293,8 @@ public class TambahLowonganActivity extends AppCompatActivity {
                 txtSkill.getText().toString(),
                 txtKnowledge.getText().toString(),
                 txtPersonality.getText().toString(),
-                txtSalary.getText().toString());
+                txtSalary.getText().toString(),
+                uploadedLogonganImg);
     }
 
     private class getKategoriData extends AsyncTask<String,String,String> {
@@ -351,7 +413,7 @@ public class TambahLowonganActivity extends AppCompatActivity {
             String knowledge    = params[12];
             String personality  = params[13];
             String salary       = params[14];
-
+            String lowongan_img = params[15];
             try {
                 URL url = new URL(reg_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
@@ -373,7 +435,8 @@ public class TambahLowonganActivity extends AppCompatActivity {
                         URLEncoder.encode("skill", "UTF-8") + "=" + URLEncoder.encode(skill, "UTF-8") + "&" +
                         URLEncoder.encode("knowledge", "UTF-8") + "=" + URLEncoder.encode(knowledge, "UTF-8") + "&" +
                         URLEncoder.encode("personality", "UTF-8") + "=" + URLEncoder.encode(personality, "UTF-8") + "&" +
-                        URLEncoder.encode("salary", "UTF-8") + "=" + URLEncoder.encode(salary, "UTF-8");
+                        URLEncoder.encode("salary", "UTF-8") + "=" + URLEncoder.encode(salary, "UTF-8") + "&" +
+                        URLEncoder.encode("lowongan_image", "UTF-8") + "=" + URLEncoder.encode(lowongan_img, "UTF-8");
 
                 BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
                 bufferedWriter.write(data);
@@ -432,6 +495,149 @@ public class TambahLowonganActivity extends AppCompatActivity {
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
+        }
+    }
+
+    private static String convertStreamToString(InputStream is) {
+
+        BufferedReader reader = new BufferedReader(new InputStreamReader(is));
+        StringBuilder sb = new StringBuilder();
+
+        String line = null;
+        try {
+            while ((line = reader.readLine()) != null) {
+                sb.append(line + "\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                is.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return sb.toString();
+    }
+
+    private int uploadFile(final String selectedFilePath){
+
+        int serverResponseCode = 0;
+
+        HttpURLConnection connection;
+        DataOutputStream dataOutputStream;
+        String lineEnd = "\r\n";
+        String twoHyphens = "--";
+        String boundary = "*****";
+
+
+        int bytesRead,bytesAvailable,bufferSize;
+        byte[] buffer;
+        int maxBufferSize = 10 * 1024 * 1024;
+        File selectedFile = new File(selectedFilePath);
+
+
+        String[] parts = selectedFilePath.split("/");
+        final String fileName = parts[parts.length - 1];
+
+        if (!selectedFile.isFile()) {
+            dialog.dismiss();
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Snackbar.make(findViewById(R.id.layout_tambah_lowongan), "Sumber tidak ditemukan!", Snackbar.LENGTH_LONG).show();
+                }
+            });
+            return 0;
+        }
+        else {
+            try {
+                FileInputStream fileInputStream = new FileInputStream(selectedFile);
+                URL url = new URL(core.API("user_lowongan_tambah_image"));
+
+                connection = (HttpURLConnection) url.openConnection();
+                connection.setDoInput(true);//Allow Inputs
+                connection.setDoOutput(true);//Allow Outputs
+                connection.setUseCaches(false);//Don't use a cached Copy
+                connection.setRequestMethod("POST");
+                connection.setRequestProperty("Connection", "Keep-Alive");
+                connection.setRequestProperty("ENCTYPE", "multipart/form-data");
+                connection.setRequestProperty("Content-Type", "multipart/form-data;boundary=" + boundary);
+                connection.setRequestProperty("uploaded_file", selectedFilePath);
+
+                //creating new dataoutputstream
+                dataOutputStream = new DataOutputStream(connection.getOutputStream());
+
+                //writing bytes to data outputstream
+                dataOutputStream.writeBytes(twoHyphens + boundary + lineEnd);
+
+                dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"uploaded_file\"; filename=\""
+                        + selectedFilePath + "\"" + lineEnd);
+
+                dataOutputStream.writeBytes(lineEnd);
+
+                //returns no. of bytes present in fileInputStream
+                bytesAvailable = fileInputStream.available();
+                //selecting the buffer size as minimum of available bytes or 10 MB
+                bufferSize = Math.min(bytesAvailable, maxBufferSize);
+                //setting the buffer as byte array of size of bufferSize
+                buffer = new byte[bufferSize];
+
+                //reads bytes from FileInputStream(from 0th index of buffer to buffersize)
+                bytesRead = fileInputStream.read(buffer,0,bufferSize);
+
+                //loop repeats till bytesRead = -1, i.e., no bytes are left to read
+                while (bytesRead > 0){
+                    //write the bytes read from inputstream
+                    dataOutputStream.write(buffer,0,bufferSize);
+                    bytesAvailable = fileInputStream.available();
+                    bufferSize = Math.min(bytesAvailable,maxBufferSize);
+                    bytesRead = fileInputStream.read(buffer,0,bufferSize);
+                }
+
+                dataOutputStream.writeBytes(lineEnd);
+                dataOutputStream.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
+
+                serverResponseCode = connection.getResponseCode();
+                String serverResponseMessage = connection.getResponseMessage();
+                //response code of 200 indicates the server status OK
+                if (serverResponseCode == 200) {
+                    InputStream response = connection.getInputStream();
+                    final String reply = convertStreamToString(response);
+
+                    uploadedLogonganImg = reply;
+//                    Log.d("SikbkLog", "Reply: " + reply);
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Snackbar.make(findViewById(R.id.layout_tambah_lowongan), "Gambar berhasil diupload!", Snackbar.LENGTH_LONG).show();
+                        }
+                    });
+                }
+                //closing the input and output streams
+                fileInputStream.close();
+                dataOutputStream.flush();
+                dataOutputStream.close();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+//                        Snackbar.make(findViewById(R.id.layout_tambah_lowongan),"Berkas tidak ditemukan!", Snackbar.LENGTH_LONG).show();
+                    }
+                });
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            dialog.dismiss();
+            return serverResponseCode;
         }
     }
 }

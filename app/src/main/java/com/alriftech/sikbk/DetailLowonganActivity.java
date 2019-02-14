@@ -17,6 +17,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.MemoryPolicy;
+import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -177,6 +179,11 @@ public class DetailLowonganActivity extends AppCompatActivity {
 
                 for (int i = 0; i < jdata.length(); i++) {
                     JSONObject c = jdata.getJSONObject(i);
+
+                    String url = getString(R.string.ASSETS_URL) + "lowongan/" + c.getString("lowongan_image");
+                    Picasso.with(DetailLowonganActivity.this).invalidate(url);
+                    Picasso.with(DetailLowonganActivity.this).load(url).into(imgDetails);
+                    imgDetails.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
                     txtBidang.setText(c.getString("bidang")); low_bidang = c.getString("bidang");
                     txtKantor.setText("Kategori " + c.getString("nama_kategori") + " \u2022 Oleh " + c.getString("nama_kantor"));

@@ -21,7 +21,25 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pastikan data yang Anda masukkan benar. Data dibawah merupakan data dari lowongan yang akan Anda buka."
-                android:paddingBottom="40dp"/>
+                android:paddingBottom="20dp"/>
+
+            <ImageView
+                android:id="@+id/imgLowongan"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="center"
+                android:src="@drawable/ic_broken_image_gray_24dp"
+                android:background="#C9C9C9"
+                android:clickable="true"
+                android:onClick="browseImageLowongan"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="*) Ketuk untuk menambahkan atau mengubah foto."
+                android:textStyle="italic"
+                android:paddingBottom="20dp"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
