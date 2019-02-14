@@ -1,10 +1,12 @@
 package com.alriftech.sikbk;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -50,6 +52,7 @@ public class SplashActivity extends AppCompatActivity {
                     cekPermission();
                 } else {
                     new AlertDialog.Builder(SplashActivity.this, R.style.Sikbk_Dialog)
+                            .setCancelable(false)
                             .setTitle(R.string.t_informasi)
                             .setMessage(R.string.b_no_connection)
                             .setNeutralButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
@@ -73,13 +76,7 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private boolean isHavePermission(String perm) {
-        int result = ContextCompat.checkSelfPermission(this, perm);
-//        Log.d("SikbkLog", perm + " result: " + result);
-
-        if (result == PackageManager.PERMISSION_GRANTED)
-            return true;
-        else
-            return false;
+        return (ContextCompat.checkSelfPermission(this, perm) == PackageManager.PERMISSION_GRANTED);
     }
 
     private void setPermission() {
@@ -100,6 +97,7 @@ public class SplashActivity extends AppCompatActivity {
                 !isHavePermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
             new AlertDialog.Builder(SplashActivity.this, R.style.Sikbk_Dialog)
+                    .setCancelable(false)
                     .setTitle(R.string.t_konfirmasi)
                     .setMessage(R.string.b_konfirmasi_permission)
                     .setPositiveButton(R.string.btn_yes, new DialogInterface.OnClickListener() {
@@ -154,8 +152,8 @@ public class SplashActivity extends AppCompatActivity {
                 int vCode = jobj.getInt("versionCode");
                 String vName = jobj.getString("versionName");
 
-                Log.d("SikbkLog", "Installed version: " + verName);
-                Log.d("SikbkLog", "New version: " + vName);
+                Log.d("SikbkLog", "Local version: " + verName);
+                Log.d("SikbkLog", "Online version: " + vName);
 
                 TextView txtVersion = findViewById(R.id.txtVersion);
                 txtVersion.setText("Version " + verName);

@@ -48,7 +48,7 @@ android {
 
     // Hook to check if the release/debug task is among the tasks to be executed.
     // Let's make use of it
-    gradle.taskGraph.whenReady {taskGraph ->
+    gradle.taskGraph.whenReady { taskGraph ->
         if (taskGraph.hasTask(assembleDebug)) {  /* when run debug task */
             autoIncrementBuildNumber()
         } else if (taskGraph.hasTask(assembleRelease)) { /* when run release task */
@@ -78,7 +78,6 @@ dependencies {
     implementation 'com.android.support:palette-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     implementation "com.android.support:support-compat:26.1.0"
-//    implementation 'com.android.support:exifinterface:26.1.0'
     implementation 'com.google.android.gms:play-services-maps:11.6.2'
     implementation 'com.google.android.gms:play-services-auth:11.6.2'
     implementation 'com.squareup.picasso:picasso:2.5.2'

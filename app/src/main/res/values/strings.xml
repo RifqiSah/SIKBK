@@ -67,6 +67,9 @@
     <string name="btn_yes">Ya</string>
     <string name="btn_no">Tidak</string>
     <string name="btn_cancel">Batal</string>
+    <string name="btn_enable">Aktifkan</string>
+    <string name="btn_disable">Matikan</string>
+    <string name="btn_ignore">Abaikan</string>
     <string name="t_konfirmasi">Konfirmasi</string>
     <string name="t_informasi">Informasi</string>
     <string name="b_konfirmasi_lamaran">Apakah Anda yakin ingin melamar pekerjaan ini?</string>
@@ -81,6 +84,7 @@
     <string name="b_infokantorkosong">Anda hanya dapat membuka lowongan ketika mempunyai minimal sebuah kantor.</string>
     <string name="b_exitapp">Tekan tombol kembali lagi untuk keluar aplikasi.</string>
     <string name="b_link_google_account">Apakah Anda ingin menghubungkan akun %s?</string>
+    <string name="b_gpsdisable">Aplikasi membutuhkan akses GPS pada perangkat Anda untuk mendapatkan lokasi terkini yang akurat.</string>
 
     <!--Navigation Drawer-->
     <string name="openDrawer">Drawer dibuka</string>

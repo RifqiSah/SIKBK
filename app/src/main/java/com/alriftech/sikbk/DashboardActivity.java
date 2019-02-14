@@ -2,11 +2,13 @@ package com.alriftech.sikbk;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.MatrixCursor;
 import android.graphics.Color;
+import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.provider.BaseColumns;
@@ -202,6 +204,7 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+        cekGPS();
         getUserDetail(sp.getInt("id_user", 0));
 
         notif = sp.getBoolean("notifikasi", false);
@@ -260,6 +263,34 @@ public class DashboardActivity extends AppCompatActivity {
 
     private void getUserDetail(int id) {
         new getUserData().execute(String.valueOf(id));
+    }
+
+    private void cekGPS() {
+        // Make sure that GPS is enabled on the device
+        LocationManager mlocManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        boolean enabled = mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        if (!enabled) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setCancelable(false);
+            builder.setMessage(R.string.b_gpsdisable);
+            builder.setPositiveButton(R.string.btn_enable, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                }
+            });
+            builder.setNegativeButton(R.string.btn_ignore, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+
+            AlertDialog alert = builder.create();
+            alert.show();
+        }
     }
 
 //    @Override
