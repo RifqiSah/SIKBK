@@ -96,7 +96,8 @@ public class LowonganSayaFragment extends Fragment {
                             c.getString("deskripsi"),
                             c.getString("nama_kantor"),
                             c.getString("dibuat_pada"),
-                            c.getString("status")
+                            c.getString("status"),
+                            c.getString("balasan")
                     );
                     lowonganSayaArrayList.add(ls);
                     adapter.notifyDataSetChanged();

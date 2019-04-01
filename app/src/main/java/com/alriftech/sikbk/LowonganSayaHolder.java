@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 public class LowonganSayaHolder extends RecyclerView.ViewHolder {
 
-    private TextView txtBidang, txtKantor, txtDeskripsi, txtDibuatPada, txtStatus;
+    private TextView txtBidang, txtKantor, txtDeskripsi, txtDibuatPada, txtStatus, txtBalasan;
 
     public LowonganSayaHolder(View itemView) {
         super(itemView);
@@ -16,12 +16,13 @@ public class LowonganSayaHolder extends RecyclerView.ViewHolder {
         this.txtDibuatPada  = itemView.findViewById(R.id.txt_list_lowongan_saya_waktu);
         this.txtDeskripsi   = itemView.findViewById(R.id.txt_list_lowongan_saya_deskripsi);
         this.txtStatus      = itemView.findViewById(R.id.txt_list_lowongan_saya_status);
+        this.txtBalasan     = itemView.findViewById(R.id.txt_list_lowongan_saya_balasan);
     }
 
     private void setStatus(int kode) {
         switch (kode) {
             case 1:
-                txtStatus.setText("Diterima");
+                txtStatus.setText("Lolos");
                 txtStatus.setBackgroundResource(R.drawable.kategori_layout_7);
                 break;
 
@@ -42,6 +43,7 @@ public class LowonganSayaHolder extends RecyclerView.ViewHolder {
         txtKantor.setText(lowonganSaya.getKantor());
         txtDibuatPada.setText(lowonganSaya.getDibuat_pada());
         txtDeskripsi.setText(lowonganSaya.getDeskripsi());
+        txtBalasan.setText(lowonganSaya.getBalasan());
 
         setStatus(Integer.valueOf(lowonganSaya.getStatus()));
     }

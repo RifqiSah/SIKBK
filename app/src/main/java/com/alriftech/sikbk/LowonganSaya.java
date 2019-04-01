@@ -7,14 +7,16 @@ public class LowonganSaya {
     private String kantor;
     private String dibuat_pada;
     private String status;
+    private String balasan;
 
-    public LowonganSaya(int id_pelamar, String bidang, String deskripsi, String kantor, String dibuat_pada, String status) {
+    public LowonganSaya(int id_pelamar, String bidang, String deskripsi, String kantor, String dibuat_pada, String status, String balasan) {
         this.id_pelamar = id_pelamar;
         this.bidang = bidang;
         this.deskripsi = deskripsi;
         this.kantor = kantor;
         this.dibuat_pada = dibuat_pada;
         this.status = status;
+        this.balasan = balasan;
     }
 
     public int getId_pelamar() {
@@ -63,5 +65,13 @@ public class LowonganSaya {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getBalasan() {
+        return balasan;
+    }
+
+    public void setBalasan(String balasan) {
+        this.balasan = balasan;
     }
 }

@@ -32,8 +32,8 @@ android {
         applicationId "com.alriftech.sikbk"
         minSdkVersion 23
         targetSdkVersion 26
-        versionCode 3
-        versionName "1.2.0." + versionBuild
+        versionCode 4
+        versionName "1.3.0." + versionBuild
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 

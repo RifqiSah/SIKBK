@@ -151,6 +151,8 @@ public class SplashActivity extends AppCompatActivity {
 
                 int vCode = jobj.getInt("versionCode");
                 String vName = jobj.getString("versionName");
+                boolean mt = jobj.getBoolean("maintenance");
+                String mtDate = jobj.getString("maintenanceDate");
 
                 Log.d("SikbkLog", "Local version: " + verName);
                 Log.d("SikbkLog", "Online version: " + vName);
@@ -158,8 +160,23 @@ public class SplashActivity extends AppCompatActivity {
                 TextView txtVersion = findViewById(R.id.txtVersion);
                 txtVersion.setText("Version " + verName);
 
-                if (vCode > verCode)
-                    core.showNotification("Versi baru tersedia!", "Ketuk untuk melakukan pembaruan aplikasi.", true);
+                if (!mt) {
+                    if (vCode > verCode)
+                        core.showNotification("Versi baru tersedia!", "Ketuk untuk melakukan pembaruan aplikasi.", true);
+                }
+                else {
+                    new AlertDialog.Builder(SplashActivity.this, R.style.Sikbk_Dialog)
+                            .setCancelable(false)
+                            .setTitle(R.string.t_informasi)
+                            .setMessage("Maaf, server sedang dalam perbaikan hingga " + mtDate + ".")
+                            .setNeutralButton(R.string.btn_ok, new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    finish();
+                                }
+                            }).show();
+                }
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }
